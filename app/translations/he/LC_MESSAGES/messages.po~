@@ -1,0 +1,506 @@
+# Hebrew translations for PACKAGE package.
+# Copyright (C) 2024 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# U-DESKTOP-6BSMTJK\User <User@desktop-6bsmtjk>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-11-05 11:56+0200\n"
+"Last-Translator: U-DESKTOP-6BSMTJK\\User <User@desktop-6bsmtjk>\n"
+"Language-Team: Hebrew\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: app/templates/index.html:13
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\index.html⁩:13
+msgid "Robot Arm Control"
+msgstr "שליטה בזרוע רובוטית"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\routers\input_medicine.py⁩:39
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\routers\input_medicine.py⁩:47
+msgid "Invalid barcode. Please try again."
+msgstr "ברקוד שגוי. אנא נסה שוב."
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\routers\input_medicine.py⁩:61
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\routers\input_medicine.py⁩:71
+msgid "All fields are required."
+msgstr "נדרשים כל השדות."
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\routers\input_medicine.py⁩:94
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\routers\input_medicine.py⁩:110
+msgid "Authorization failed. Barcode does not match."
+msgstr "האימות נכשל. הברקוד לא תואם."
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\core.py⁩:1120
+msgid "Aborted!"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\core.py⁩:1309
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\decorators.py⁩:559
+msgid "Show this message and exit."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\core.py⁩:1340
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\core.py⁩:1370
+#, python-brace-format
+msgid "(Deprecated) {text}"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\core.py⁩:1387
+msgid "Options"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\core.py⁩:1413
+#, python-brace-format
+msgid "Got unexpected extra argument ({args})"
+msgid_plural "Got unexpected extra arguments ({args})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\core.py⁩:1429
+msgid "DeprecationWarning: The command {name!r} is deprecated."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\core.py⁩:1636
+msgid "Commands"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\core.py⁩:1668
+#, fuzzy
+msgid "Missing command."
+msgstr "ניהול"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\core.py⁩:1746
+msgid "No such command {name!r}."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\core.py⁩:2310
+msgid "Value must be an iterable."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\core.py⁩:2331
+#, python-brace-format
+msgid "Takes {nargs} values but 1 was given."
+msgid_plural "Takes {nargs} values but {len} were given."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\core.py⁩:2778
+#, python-brace-format
+msgid "env var: {var}"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\core.py⁩:2808
+msgid "(dynamic)"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\core.py⁩:2821
+#, python-brace-format
+msgid "default: {default}"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\core.py⁩:2834
+msgid "required"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\decorators.py⁩:465
+#, python-format
+msgid "%(prog)s, version %(version)s"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\decorators.py⁩:528
+msgid "Show the version and exit."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\exceptions.py⁩:44
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\exceptions.py⁩:80
+#, python-brace-format
+msgid "Error: {message}"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\exceptions.py⁩:72
+#, python-brace-format
+msgid "Try '{command} {option}' for help."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\exceptions.py⁩:121
+#, python-brace-format
+msgid "Invalid value: {message}"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\exceptions.py⁩:123
+#, python-brace-format
+msgid "Invalid value for {param_hint}: {message}"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\exceptions.py⁩:179
+#, fuzzy
+msgid "Missing argument"
+msgstr "ניהול"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\exceptions.py⁩:181
+#, fuzzy
+msgid "Missing option"
+msgstr "ניהול"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\exceptions.py⁩:183
+#, fuzzy
+msgid "Missing parameter"
+msgstr "ניהול"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\exceptions.py⁩:185
+#, fuzzy, python-brace-format
+msgid "Missing {param_type}"
+msgstr "ניהול"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\exceptions.py⁩:192
+#, python-brace-format
+msgid "Missing parameter: {param_name}"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\exceptions.py⁩:212
+#, python-brace-format
+msgid "No such option: {name}"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\exceptions.py⁩:224
+#, python-brace-format
+msgid "Did you mean {possibility}?"
+msgid_plural "(Possible options: {possibilities})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\exceptions.py⁩:262
+msgid "unknown error"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\exceptions.py⁩:269
+msgid "Could not open file {filename!r}: {message}"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\parser.py⁩:231
+msgid "Argument {name!r} takes {nargs} values."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\parser.py⁩:413
+msgid "Option {name!r} does not take a value."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\parser.py⁩:474
+msgid "Option {name!r} requires an argument."
+msgid_plural "Option {name!r} requires {nargs} arguments."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\shell_completion.py⁩:319
+msgid "Shell completion is not supported for Bash versions older than 4.4."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\shell_completion.py⁩:326
+msgid "Couldn't detect Bash version, shell completion is not supported."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\termui.py⁩:158
+#, fuzzy
+msgid "Repeat for confirmation"
+msgstr "אשר פרטים"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\termui.py⁩:174
+msgid "Error: The value you entered was invalid."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\termui.py⁩:176
+#, python-brace-format
+msgid "Error: {e.message}"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\termui.py⁩:187
+msgid "Error: The two entered values do not match."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\termui.py⁩:243
+msgid "Error: invalid input"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\termui.py⁩:773
+msgid "Press any key to continue..."
+msgstr ""
+
+
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\types.py⁩:298
+msgid "{value!r} is not {choice}."
+msgid_plural "{value!r} is not one of {choices}."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\types.py⁩:392
+msgid "{value!r} does not match the format {format}."
+msgid_plural "{value!r} does not match the formats {formats}."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\types.py⁩:414
+msgid "{value!r} is not a valid {number_type}."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\types.py⁩:470
+#, python-brace-format
+msgid "{value} is not in the range {range}."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\types.py⁩:611
+msgid "{value!r} is not a valid boolean."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\types.py⁩:635
+msgid "{value!r} is not a valid UUID."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\types.py⁩:822
+msgid "file"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\types.py⁩:824
+msgid "directory"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\types.py⁩:826
+msgid "path"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\types.py⁩:877
+msgid "{name} {filename!r} does not exist."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\types.py⁩:886
+msgid "{name} {filename!r} is a file."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\types.py⁩:894
+#, python-brace-format
+msgid "{name} '{filename}' is a directory."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\types.py⁩:903
+msgid "{name} {filename!r} is not readable."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\types.py⁩:912
+msgid "{name} {filename!r} is not writable."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\types.py⁩:921
+msgid "{name} {filename!r} is not executable."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\types.py⁩:988
+#, python-brace-format
+msgid "{len_type} values are required, but {len_value} was given."
+msgid_plural "{len_type} values are required, but {len_value} were given."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\_termui_impl.py⁩:518
+#, python-brace-format
+msgid "{editor}: Editing failed"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\venv\Lib\site-packages\click\_termui_impl.py⁩:522
+#, python-brace-format
+msgid "{editor}: Editing failed: {e}"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:6
+msgid "Home"
+msgstr "בית"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:11
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:10
+msgid "Medical Management System"
+msgstr "מערכת לניהול תרופות"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:15
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:17
+msgid "Management"
+msgstr "ניהול"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:16
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:18
+msgid "Input a Medicine"
+msgstr "הכנסת תרופה"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:17
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:19
+msgid "Bring Medicines to a Patient"
+msgstr "הבאת תרופות למטופל"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\index.html⁩:17
+msgid "Move Up"
+msgstr "הזז למעלה"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:24
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:34
+msgid "Scan the Medicine Barcode"
+msgstr "סרוק את ברקוד התרופה"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:28
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:66
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:49
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:106
+msgid "Enter Barcode"
+msgstr "הזן ברקוד"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:31
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:45
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:52
+msgid "Scan"
+msgstr "סרוק"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:36
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:57
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:15
+msgid "Medicine Details"
+msgstr "פרטי התרופה"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:40
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:61
+msgid "Number of Tablets"
+msgstr "מספר הטבליות"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:44
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:65
+msgid "Expiration Date"
+msgstr "תאריך תפוגה"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:48
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:69
+msgid "Batch Number"
+msgstr "מספר אצווה"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:51
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:72
+msgid "Confirm Details"
+msgstr "אשר פרטים"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:57
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:78
+msgid "Place Medicine in Storage"
+msgstr "הנח את התרופה באחסון"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:58
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:86
+msgid "The storage location is now open. Please place the medicine inside."
+msgstr "מיקום האחסון פתוח כעת. אנא הנח את התרופה בפנים."
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:59
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:87
+msgid "Finish Entering Medicine"
+msgstr "סיים הכנסת תרופה"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:62
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:91
+msgid "Scan the Barcode Again for Authorization"
+msgstr "סרוק את הברקוד שוב לצורך אימות"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:69
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:109
+msgid "Authorize"
+msgstr "אשר"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:74
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:114
+msgid "The Medicine Was Successfully Received"
+msgstr "התרופה התקבלה בהצלחה"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:77
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:116
+msgid "Add Another Medicine"
+msgstr "הוסף תרופה נוספת"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:78
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:81
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:117
+msgid "Finish and Return to Home"
+msgstr "סיים וחזור לדף הבית"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\routers\dispense_medicine.py⁩:38
+msgid "Invalid patient barcode. Please try again."
+msgstr "ברקוד חולה לא תקין. נסה שוב."
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:32
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:41
+msgid "Scan Patient Barcode"
+msgstr "סרוק ברקוד מטופל"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:42
+msgid "Enter Patient Barcode"
+msgstr "הכנס ברקוד מטופל"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:50
+msgid "Select Medicines for Dispensing"
+msgstr "בחר תרופות לניפוק"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:61
+msgid "Select All"
+msgstr "בחר הכל"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:62
+msgid "Clear All"
+msgstr "נקה הכל"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:64
+msgid "Dispense Selected Medicines"
+msgstr "ניפוק תרופות נבחרות"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:68
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:43
+msgid "Dispensing Medicines"
+msgstr "ניפוק תרופות"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:77
+msgid "The medicines are now ready for the patient."
+msgstr "התרופות מוכנות למטופל"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:79
+msgid "The selected medicines are being dispensed into the cup. Please wait..."
+msgstr "התרופות הנבחרות מנופקות כרגע לתוך הכוס. נא המתן..."
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:14
+msgid "Scan Barcode"
+msgstr "הזנת ברקוד"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:16
+msgid "Place in Storage"
+msgstr "הכנסת התרופה"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:17
+msgid "Re-scan for Authorization"
+msgstr "אימות"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:18
+msgid "Confirmation"
+msgstr "אישור וסיום"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:25
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:28
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:50
+msgid "Processing barcode"
+msgstr "מעבד ברקוד"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:26
+msgid "Opening storage"
+msgstr "פותח את תא התרופות"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:42
+msgid "Select Medicines"
+msgstr "בחר תרופות"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:51
+msgid "Dispensing medicines. Please wait..."
+msgstr "מנפק תרופות. נא המתן..."

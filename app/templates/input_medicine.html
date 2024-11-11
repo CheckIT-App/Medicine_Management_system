@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% set input_medicine_home_url = url_for('input_medicine', lang=lang) %}
+{% set scan_barcode_url = url_for('scan_barcode', lang=lang) %}
+{% set medicine_details_url = url_for('medicine_details', lang=lang) %}
+{% set finish_placing_medicine_url = url_for('finish_placing_medicine', lang=lang) %}
+{% set authorize_barcode_url = url_for('authorize_barcode', lang=lang) %}
+{% set home_url = url_for('home', lang=lang) %}
+
+{% block additional_styles %}
+
+<link rel="stylesheet" href="{{ url_for('static', path='css/global.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='css/input_medicine.css') }}">
+
+{% endblock %}
+
+{% block header %}
+    <div class="progress-container">
+        {% for step in Steps %}
+            <div class="progress-step {% if step.value <= current_step.value %}active{% endif %}">
+                <span class="step-number">{{ step.value }}</span>
+                <span class="step-label">{{ _(step.label) }}</span>
+            </div>
+            {% if not loop.last %}
+                <div class="progress-line {% if step.value < current_step.value %}active{% endif %}"></div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="main-content">
+        {% if stage == Steps.SCAN_BARCODE %}
+            <h2 class="stage-title">{{ _("Scan the Medicine Barcode") }}</h2>
+            <div class="divider"></div>
+            
+            <div class="machine-container">
+                <!-- Machine image -->
+                <img src="{{ url_for('static', path='images/mechine_image.jpg') }}" alt="Medicine Machine" class="machine-image-left">
+                
+                <!-- Highlight around scanner area -->
+                <div class="scanner-highlight"></div>
+                
+                <!-- Scanning line effect -->
+                <div class="scanner-line"></div>
+            </div>
+              <form class="medicine-form" method="post" action="{{ scan_barcode_url }}">
+                <div class="form-group">
+                    <label for="barcode">{{ _("Enter Barcode") }}</label>
+                    <input type="text" name="barcode"  required autofocus>
+                </div>
+                <button type="submit" class="submit-button">{{ _("Scan") }}</button>
+            </form>
+            {% if error %}<p class="error">{{ error }}</p>{% endif %}
+
+        {% elif stage == Steps.ENTER_MEDICINE_DETAILS %}
+            <h2 class="stage-title">{{ _("Medicine Details") }}: {{ medicine_name }}</h2>
+            <div class="divider"></div>
+            <form class="medicine-form" method="post" action="{{ medicine_details_url }}">
+                <div class="form-group">
+                    <label for="balls_number">{{ _('Number of Tablets') }}</label>
+                    <input type="number" name="balls_number"  required>
+                </div>
+                <div class="form-group">
+                    <label for="expiration_date">{{ _('Expiration Date') }}</label>
+                    <input type="date" name="expiration_date"  required>
+                </div>
+                <div class="form-group">
+                    <label for="batch_number">{{ _('Batch Number') }}</label>
+                    <input type="text" name="batch_number"  required>
+                </div>
+                <button type="submit" class="submit-button">{{ _("Confirm Details") }}</button>
+            </form>
+            {% if error %}<p class="error">{{ error }}</p>{% endif %}
+
+        {% elif stage == Steps.PLACE_IN_STORAGE %}
+            <form class="medicine-form" method="post" action="{{ finish_placing_medicine_url }}">
+                <h2 class="stage-title">{{ _("Place Medicine in Storage") }}</h2>
+                <div class="machine-container">
+                    <!-- New Machine with Medicine Entry Highlight -->
+                    <img src="{{ url_for('static', path='images/machine_storage.jpg') }}" alt="New Medicine Machine" class="machine-image-center">
+                    <div class="entry-highlight"></div>
+                    <div class="entry-arrow">⬇</div>
+                    
+                  </div>
+                <p>{{ _("The storage location is now open. Please place the medicine inside.") }}</p>
+                <button type="submit" class="submit-button">{{ _("Finish Entering Medicine") }}</button>
+            </form>
+
+        {% elif stage == Steps.RESCAN_FOR_AUTHORIZATION %}
+            <h2 class="stage-title">{{ _("Scan the Barcode Again for Authorization") }}</h2>
+            <div class="divider"></div>
+            
+            <div class="machine-container">
+                <!-- Machine image -->
+                <img src="{{ url_for('static', path='images/mechine_image.jpg') }}" alt="Medicine Machine" class="machine-image-left">
+                
+                <!-- Highlight around scanner area -->
+                <div class="scanner-highlight"></div>
+                
+                <!-- Scanning line effect -->
+                <div class="scanner-line"></div>
+            </div>
+            <form class="medicine-form" method="post" action="{{ authorize_barcode_url }}">
+                <div class="form-group">
+                    <label for="barcode">{{ _("Enter Barcode") }}</label>
+                    <input type="text" name="barcode"  required>
+                </div>
+                <button type="submit" class="submit-button">{{ _("Authorize") }}</button>
+            </form>
+            {% if error %}<p class="error">{{ error }}</p>{% endif %}
+
+        {% elif stage == Steps.CONFIRMATION %}
+            <h2 class="stage-title">{{ _("The Medicine Was Successfully Received") }}</h2>
+            <div class="divider"></div>
+            <button onclick="location.href='{{ input_medicine_home_url }}'" class="submit-button">{{ _("Add Another Medicine") }}</button>
+            <button onclick="location.href='{{ home_url }}'" class="submit-button">{{ _("Finish and Return to Home") }}</button>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

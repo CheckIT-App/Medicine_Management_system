@@ -1,0 +1,206 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+}
+
+/* Main content area */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: var(--background-color);
+    box-shadow: 0 4px 12px var(--shadow-color);
+    border-radius: 8px;
+    border-top: 3px solid var(--primary-color);
+    margin: auto;
+}
+
+.stage-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+/* Divider */
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--divider-color);
+    margin: 15px 0;
+}
+
+/* Form styling */
+.medicine-form {
+    width: 100%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    color: var(--label-color);
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.form-group input {
+    padding: 8px;
+    font-size: 0.9rem;
+    border: 1px solid var(--divider-color);
+    border-radius: 5px;
+    background-color: #f9fafc;
+    transition: border 0.2s ease-in-out;
+}
+
+.form-group input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* Submit Button */
+.submit-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--button-text-color);
+    background: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+    margin-top: 10px;
+}
+
+.submit-button:hover {
+    background: var(--highlight-color);
+}
+
+/* Error styling */
+.error {
+    color: var(--error-color);
+    font-size: 0.9rem;
+    margin-top: 5px;
+    text-align: center;
+}
+
+/* Progress Bar Container */
+.progress-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    gap: 8px;
+    background-color: var(--progress-bg);
+}
+
+/* Individual Step */
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+/* Circular Indicator for Step Number */
+.step-number {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Label Below Each Step */
+.step-label {
+    font-size: 0.8rem;
+    color: #e1effa;
+    margin-top: 5px;
+}
+
+/* Active Step Styles */
+.progress-step.active .step-number {
+    background-color: var(--progress-active);
+    color: var(--primary-color);
+}
+
+/* Line Between Steps */
+.progress-line {
+    width: 30px;
+    height: 2px;
+    background-color: var(--inactive-color);
+    transition: background-color 0.3s ease;
+}
+
+/* Active Line Style */
+.progress-line.active {
+    background-color: var(--progress-active);
+}
+
+/* Separator */
+.separator {
+    height: 1px;
+    width: 100%;
+    background: #cccccc;
+    margin-bottom: 30px;
+}
+
+/* Shared pulsing effect */
+@keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.7;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Shared fade-in effect */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  /* Shared styles for the container */
+.machine-container {
+    position: relative;
+    width: 280px;
+    height: 200px;
+    margin: 0 auto 10px auto;
+    overflow: hidden;
+    border: 2px solid #a6a7a780;
+    border-radius: 8px;
+  }
+
+ 

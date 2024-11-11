@@ -1,0 +1,249 @@
+:root {
+    --primary-color: #2d78a7;
+    --secondary-color: #4c91c4;
+    --background-color: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --border-color:#ff8c00;
+    --highlight-color: #23608d;
+    --divider-color: #d1e0f0;
+    --text-color: #333;
+    --label-color: #555;
+    --error-color: #d9534f;
+    --inactive-color: #4c91c4;
+    --progress-bg: #2d78a7;
+    --progress-active:var(--border-color);
+    --footer-text-color: #666;
+    --footer-separator-color: #cccccc;
+    --button-text-color:var(--background-color);
+    --secondary-hover-color:var(--border-color);
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-color);
+}
+
+/* Main container for flex layout */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #f0f4fa; /* Light, soft blue-gray background */
+}
+
+/* Header styling */
+.header {
+    width: 100%;
+    background-color: var(--background-color);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--divider-color);
+    margin-bottom: 20px;
+    
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    width: 20px;
+    height: auto;
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    letter-spacing: 0.5px;
+    font-family: system-ui;
+    font-style: oblique;
+    font-weight: bold;
+    
+}
+
+/* Control Buttons in Header */
+.control-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.icon-button img {
+    width: 24px;
+    height: 24px;
+}
+
+/* Content area should expand to take available width */
+.content {
+    flex: 1;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Footer styling */
+.footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+}
+
+/* Custom Footer Styling with Background Color */
+.custom-footer {
+    width: 100%;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 2px solid var(--border-color);
+}
+
+/* Static footer styling on white background */
+.static-footer {
+    width: 100%;
+    background-color: var(--background-color);
+    color: var(--footer-text-color);
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+}
+
+/* Dropdown Container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Toggle Button */
+.dropdown-toggle {
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+/* Dropdown Content Styling */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: var(--background-color);
+    min-width: 120px;
+    box-shadow: 0px 4px 8px var(--shadow-color);
+    border-radius: 4px;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Links inside Dropdown */
+.dropdown-content a {
+    color: var(--text-color);
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #f0f4fa;
+}
+
+
+/* Show Dropdown on Click */
+.dropdown-toggle:focus + .dropdown-content,
+.dropdown-toggle:active + .dropdown-content {
+    display: block;
+}
+.dropdown:hover .dropdown-content,
+.dropdown-content:hover {
+    display: block;
+}
+
+/* Separator styling */
+.separator {
+    color: var(--divider-color);
+}
+
+.footer .separator {
+    width: 1px;
+    height: 100%;
+    background-color: var(--footer-separator-color);
+    margin: 0 15px;
+    display: inline-block;
+}
+/* For left-to-right (LTR) languages */
+:dir(ltr) .container {
+    text-align: left;
+}
+
+/* For right-to-left (RTL) languages */
+:dir(rtl) .container {
+    text-align: right;
+}
+
+/* Example for form alignment */
+:dir(ltr) .form-group label {
+    text-align: left;
+}
+
+:dir(rtl) .form-group label {
+    text-align: right;
+}
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    visibility: hidden;
+}
+
+.loading-overlay.visible {
+    visibility: visible;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+#loader-message {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #fff;
+    text-align: center;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+

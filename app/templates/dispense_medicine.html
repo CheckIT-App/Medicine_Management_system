@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% set scan_patient_url = url_for('scan_patient', lang=lang) %}
+{% set dispense_medicine_url = url_for('dispense_medicines', lang=lang) %}
+{% set home_url = url_for('home', lang=lang) %}
+
+
+{% block additional_styles %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/global.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='css/dispense_medicine.css') }}">
+{% endblock %}
+
+{% block header %}
+    <div class="progress-container">
+        {% for step in Steps %}
+            <div class="progress-step {% if step.value <= current_step.value %}active{% endif %}">
+                <span class="step-number">{{ step.value }}</span>
+                <span class="step-label">{{ _(step.label) }}</span>
+            </div>
+            {% if not loop.last %}
+                <div class="progress-line {% if step.value < current_step.value %}active{% endif %}"></div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="main-content">
+        {% if stage == Steps.SCAN_PATIENT_BARCODE %}
+            <h2 class="stage-title">{{ _("Scan Patient Barcode") }}</h2>
+            <form class="medicine-form" method="post" action="{{ scan_patient_url }}">
+                <div class="machine-container">
+                    <!-- New Machine with Manual Barcode Highlight (Right-Center Zoom) -->
+                    <img src="{{ url_for('static', path='images/mechine_image.jpg') }}" alt="Machine with Manual Barcode" class="machine-image-right">
+                    
+                    <!-- Manual Barcode Highlight (Right-Center) -->
+                    <div class="manual-barcode-highlight"></div>
+                  </div>
+                <div class="form-group">
+                    <label for="barcode">{{ _("Enter Patient Barcode") }}</label>
+                    <input type="text" name="barcode" required autofocus>
+                </div>
+                <button type="submit" class="submit-button">{{ _("Scan") }}</button>
+            </form>
+            {% if error %}<p class="error">{{ error }}</p>{% endif %}
+
+        {% elif stage == Steps.SELECT_MEDICINES %}
+            <h2 class="stage-title">{{ _("Select Medicines for Dispensing") }}</h2>
+            <form class="medicine-form" method="post" action="{{ dispense_medicine_url }}">
+                <ul class="medicine-list">
+                    {% for medicine in active_medicines %}
+                        <li class="medicine-item">
+                            <input type="checkbox" name="selected_medicines" value="{{ medicine.id }}">
+                            <label>{{ medicine.name }} - {{ medicine.dosage }}</label>
+                        </li>
+                    {% endfor %}
+                </ul>
+                
+                <button type="button" class="small-button" onclick="selectAll()">{{ _("Select All") }}</button>
+                <button type="button" class="small-button" onclick="clearAll()">{{ _("Clear All") }}</button>
+                
+                <button type="submit" class="submit-button">{{ _("Dispense Selected Medicines") }}</button>
+            </form>
+
+        {% elif stage == Steps.DISPENSING_AND_COMPLETE %}
+            <h2 class="stage-title">{{ _("Dispensing Medicines") }}</h2>
+            {% if dispensing_complete %}
+            <div class="machine-container">
+                <!-- New Machine with Medicine Highlight (Bottom-Center Zoom) -->
+                <img src="{{ url_for('static', path='images/mechine_image.jpg') }}" alt="Machine with Medicines for Patient" class="machine-image-bottom">
+                
+                <!-- Medicine Area Highlight (Bottom-Center) -->
+                <div class="medicine-highlight"></div>
+              </div>
+                <p>{{ _("The medicines are now ready for the patient.") }}</p>
+            {% else %}
+                <p>{{ _("The selected medicines are being dispensed into the cup. Please wait...") }}</p>
+            {% endif %}
+            <button onclick="location.href='{{ home_url }}'" class="submit-button">{{ _("Finish and Return to Home") }}</button>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+    function selectAll() {
+        document.querySelectorAll("input[name='selected_medicines']").forEach(checkbox => checkbox.checked = true);
+    }
+
+    function clearAll() {
+        document.querySelectorAll("input[name='selected_medicines']").forEach(checkbox => checkbox.checked = false);
+    }
+</script>
+{% endblock %}

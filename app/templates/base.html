@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}" dir="{% if lang == 'he' %}rtl{% else %}ltr{% endif %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title if title else "Medicine Management System" }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='css/main.css') }}">
+    {% block additional_styles %}{% endblock %}
+</head>
+<body>
+    <div class="main-container">
+    <!-- Loading overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="spinner"></div>
+        {% if current_step is defined and current_step.loading_message != ""%}
+            <p id="loader-message">{{ _(current_step.loading_message) }}</p>
+        {% else %}
+            <p id="loader-message">{{_("Loading...")}}</p>
+        {% endif %}
+    </div>
+        <!-- Header with Logo and Title -->
+        <header class="header">
+            <div class="title-container">
+                <img src="{{ url_for('static', path='images/logo.webp') }}" alt="System Logo" class="logo">
+                <h1 class="title">MEDICINE MANAGEMENT</h1>
+            </div>
+            <div class="control-buttons">
+                <button class="icon-button" aria-label="Help">
+                    <img src="{{ url_for('static', path='images/help_icon.png') }}" alt="Help">
+                </button>
+                <button class="icon-button" aria-label="Settings">
+                    <img src="{{ url_for('static', path='images/settings_icon.png') }}" alt="Settings">
+                </button>
+                <!-- Language Dropdown -->
+                <div class="dropdown">
+                    <button class="icon-button dropdown-toggle" aria-label="Language">
+                        <img src="{{ url_for('static', path='images/language_icon.png') }}" alt="Language">
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="{{ url_for('home', lang='en') }}" class="{% if lang == 'en' %}active{% endif %}">English</a>
+                        <a href="{{ url_for('home', lang='he') }}" class="{% if lang == 'he' %}active{% endif %}">Hebrew</a>
+                    </div>
+                </div>
+                
+            </div>
+        </header>
+<div class="custom-header">
+    {%block header%}{%endblock%}
+</div>
+        <!-- Content Section for Each Screen -->
+        <main class="content">
+            {% block content %}{% endblock %}
+        </main>
+
+        <!-- Footer Section -->
+        <footer class="footer">
+             <!-- Customizable Footer Content with Background -->
+             <div class="custom-footer">
+                {% block footer %}{% endblock %}
+            </div>
+
+            <!-- Static Footer Content -->
+            <div class="static-footer">
+                <p>&copy; {{ current_year }} Medicine Management System</p>
+                <span class="separator">|</span>
+                <p>Contact us: info@medmanagement.com</p>
+                <span class="separator">|</span>
+                <p>Phone: +1 (555) 123-4567</p>
+            </div>
+        </footer>
+        <script src="{{ url_for('static', path='js/main.js') }}"></script>
+
+    </div>
+</body>
+</html>

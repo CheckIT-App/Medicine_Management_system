@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Arm Medical Control Interface</title>
+    <script src="https://unpkg.com/htmx.org@1.7.0"></script>
+    <!-- Corrected link to the external CSS file using url_for -->
+    <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">{{ _("Robot Arm Control") }}</div>
+
+        <!-- Button Group -->
+        <div class="button-group">
+            <button class="button" hx-get="/move_arm/up" hx-target="#action-result">{{ _("Move Up")}}</button>
+            <button class="button" hx-get="/move_arm/down" hx-target="#action-result">Move Down</button>
+            <button class="button" hx-get="/move_arm/home" hx-target="#action-result">Go Home</button>
+        </div>
+
+        <!-- Status Display -->
+        <div id="action-result" class="status-display">
+            {% if action %}
+                Last action: {{ action }}
+            {% else %}
+                Waiting for command...
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

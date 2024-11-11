@@ -1,0 +1,25 @@
+create pot:
+Get-ChildItem -Path .\app -Recurse -Include *.py, *.html | ForEach-Object {
+    xgettext -j -o messages.pot --language=Python $_.FullName
+    Write-Output "Processed file: $($_.FullName)"
+}
+
+creete po:
+msginit --locale=he --input=messages.pot --output=translations/he/LC_MESSAGES/messages.po
+msginit --locale=en --input=messages.pot --output=translations/en/LC_MESSAGES/messages.po
+
+update po:
+msgmerge -U app/translations/he/LC_MESSAGES/messages.po messages.pot
+msgmerge -U app/translations/en/LC_MESSAGES/messages.po messages.pot
+
+update with delete
+msgmerge --update --no-fuzzy-matching app/translations/he/LC_MESSAGES/messages.po messages.pot
+msgmerge --update --no-fuzzy-matching app/translations/en/LC_MESSAGES/messages.po messages.pot
+
+create mo:
+msgfmt --verbose app/translations/he/LC_MESSAGES/messages.po -o app/translations/he/LC_MESSAGES/messages.mo
+msgfmt --verbose app/translations/en/LC_MESSAGES/messages.po -o app/translations/en/LC_MESSAGES/messages.mo
+
+
+activate venv:
+.\venv\Scripts\activate
