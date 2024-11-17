@@ -23,3 +23,26 @@ msgfmt --verbose app/translations/en/LC_MESSAGES/messages.po -o app/translations
 
 activate venv:
 .\venv\Scripts\activate
+pip install uvicorn
+uvicorn app.main:app --reload
+
+
+
+
+sql:
+Installation Directory: C:\Program Files\PostgreSQL\17
+Server Installation Directory: C:\Program Files\PostgreSQL\17
+Data Directory: C:\Program Files\PostgreSQL\17\data
+Database Port: 5432
+Database Superuser: postgres
+Operating System Account: NT AUTHORITY\NetworkService
+Database Service: postgresql-x64-17
+Command Line Tools Installation Directory: C:\Program Files\PostgreSQL\17
+pgAdmin4 Installation Directory: C:\Program Files\PostgreSQL\17\pgAdmin 4
+Stack Builder Installation Directory: C:\Program Files\PostgreSQL\17
+Installation Log: C:\Users\חוה\AppData\Local\Temp\install-postgresql.log
+PW:manage1234
+
+exe:
+pyinstaller --onefile --console -i app/static/images/logo.ico app/main.py --add-data "app/templates;templates" --add-data "app/static;static" --hidden-import uvicorn --hidden-import fastapi --hidden-import starlette
+

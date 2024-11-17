@@ -6,7 +6,9 @@ from app.constants import DispenseSteps
 from app.hal.hardware_interface import HardwareInterface
 
 router = APIRouter()
-templates = Jinja2Templates(directory="app/templates")
+# Explicitly receive the templates object
+templates: Jinja2Templates = None
+
 
 hardware_interface = HardwareInterface()
 

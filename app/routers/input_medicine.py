@@ -4,9 +4,11 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 from app.constants import Steps
 from app.hal.hardware_interface import HardwareInterface
+import os
 
 router = APIRouter()
-templates = Jinja2Templates(directory="app/templates")
+# Explicitly receive the templates object
+templates: Jinja2Templates = None
 
 hardware_interface = HardwareInterface()  # Initialize hardware interface
 
