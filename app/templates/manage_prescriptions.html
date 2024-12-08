@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block additional_styles %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/global.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='css/manage_prescriptions.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='css/confirmation-modal.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="main-content">
+    <h1 class="stage-title">{{ _("Manage Prescriptions") }}</h1>
+
+    <div class="list-container">
+        <div class="control-container">
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" id="search-input" class="search-input" placeholder="{{ _('Search prescription...') }}" list-name="prescription-list">
+            </div>
+            <div class="add-button-container">
+                <!-- Add Prescription Button -->
+                <button id="add-prescriptions-btn" class="add-item-button action-button primary">{{ _("Add prescription") }}</button>
+            </div>
+        </div>
+
+        <ul class="action-list" id="prescription-list">
+            {% for prescription in prescriptions %}
+                <li class="action-list-item" data-name="{{ prescription.id }} {{ prescription.patient_id }} {{ prescription.prescribed_by }}">
+                    <div class="item-header">
+                        <div class="header-left">
+                            <button type="button" class="toggle-details">+</button>
+                            <div class="item-content">
+                                <div class="item-name">
+                                <div class="item-detail"><p>{{ _("Patient") }} </p>  : &nbsp; <p> {{ patients_map[prescription.patient_id] }}</p></div>
+                                <div class="item-detail"><p>{{ _("Prescribed By") }} </p>  : &nbsp; <p> {{ users_map[prescription.prescribed_by] }}</p></div>
+                            </div>
+                                <div class="item-details hidden">
+                                   
+                                    <span class="item-detail">
+                                        <ul>
+                                            {% for medicine in prescription.medicines %}
+                                                <li>{{ medicine.name }} ({{ medicine.quantity }})</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header-actions">
+                            <button type="button" class="edit-button action-button" data-entity-type="prescriptions" data-entity-id="{{ prescription.id }}">{{ _("Edit") }}</button>
+                            <button type="button" class="delete-button action-button danger" data-entity-type="prescriptions" data-entity-id="{{ prescription.id }}">{{ _("Delete") }}</button>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<!-- Prescription Modal -->
+<div id="entity-modal" class="modal hidden">
+    <div class="modal-content">
+        <span id="close-entity-modal" class="close-modal">&times;</span>
+        <h2 id="modal-title" add-text="{{ _('Add prescription') }}" edit-text="{{ _('Edit prescription') }}">{{ _("Add prescription") }}</h2>
+        <form id="entity-form" action="{{ url_for('save_prescription', lang=lang) }}" method="post">
+            <input type="hidden" name="prescription_id" id="entity_id" value="0">
+            
+            <div class="form-group">
+                <label for="patient_id">{{ _("Patient") }}</label>
+                <select name="patient_id" id="patient_id" required>
+                    {% for patient in patients %}
+                        <option value="{{ patient.id }}">{{ patient.first_name }} {{ patient.last_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="prescribed_by">{{ _("Prescribed By") }}</label>
+                <select name="prescribed_by" id="prescribed_by" required>
+                    {% for user in users %}
+                        <option value="{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group medicine-container">
+                <label for="medicines" class="medicine-label">{{ _("Medicines") }}</label>
+                <div id="medicines-section" medicine-name="{{_('Medicine')}}" quantity-name="{{_('Quantity')}}">
+                    <!-- Dynamically added medicine inputs -->
+                </div>
+                <button type="button" id="add-medicine-button" class="secondary-button">{{ _("Add medicine") }}</button>
+            </div>
+            <button type="submit" class="submit-button">{{ _("Save") }}</button>
+        </form>
+    </div>
+</div>
+
+<!-- Confirmation Modal -->
+{% include "partials/confirmation-modal.html" %}
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', path='js/gettext.min.js') }}"></script>
+<script src="{{ url_for('static', path='js/confirmation-modal.js') }}"></script>
+<script src="{{ url_for('static', path='js/manage-modals.js') }}"></script>
+<script src="{{ url_for('static', path='js/manage_prescriptions.js') }}"></script>
+{% endblock %}

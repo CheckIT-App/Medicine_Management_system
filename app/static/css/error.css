@@ -1,0 +1,47 @@
+/* Additional inline styles to enhance design */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.main-content {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: var(--primary-color, #333);
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+p {
+    color: var(--text-color, #666);
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+a button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: var(--primary-color, #007bff);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+a button:hover {
+    background-color: var(--highlight-color, #0056b3);
+}

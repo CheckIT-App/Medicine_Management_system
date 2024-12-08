@@ -46,31 +46,33 @@
 
 .form-group {
     display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
+    align-items: center; /* Vertically center the items */
+    gap: 10px; /* Add space between the label and input */
+    margin-bottom: 10px; /* Add spacing between form groups */
 }
 
 .form-group label {
+    flex: 0 0 120px; /* Fixed width for labels */
+    text-align: right; /* Align text to the right (optional) */
+    font-weight: bold; /* Make it stand out */
     font-size: 0.9rem;
     color: var(--label-color);
-    margin-bottom: 5px;
-    font-weight: 500;
 }
 
 .form-group input {
+    flex: 1; /* Let the input grow to fill the space */
     padding: 8px;
     font-size: 0.9rem;
-    border: 1px solid var(--divider-color);
+    border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9fafc;
-    transition: border 0.2s ease-in-out;
+    transition: border-color 0.2s ease-in-out;
 }
 
 .form-group input:focus {
-    border-color: var(--primary-color);
+    border-color: var(--primary-color); /* Highlight input on focus */
     outline: none;
 }
-
 /* Submit Button */
 .submit-button {
     display: block;
@@ -203,4 +205,220 @@
     border-radius: 8px;
   }
 
- 
+  /* Ensure consistent styling for input, select, and textarea */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%; /* Full width */
+    padding: 8px; /* Match padding */
+    font-size: 0.9rem; /* Match font size */
+    border: 1px solid var(--divider-color); /* Match border */
+    border-radius: 5px; /* Consistent border radius */
+    background-color: #f9fafc; /* Match input background */
+    transition: border 0.2s ease-in-out; /* Add a focus effect */
+    box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+/* Focus effect for all form controls */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* Adjust textarea height */
+.form-group textarea {
+    resize: vertical; /* Allow vertical resizing */
+    min-height: 80px; /* Set a reasonable minimum height */
+}
+
+/* General Styled List */
+.styled-list {
+    list-style: none; /* Remove bullets */
+    padding: 0;
+    margin: 15px 0;
+    width: 100%;
+}
+
+.styled-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border: 1px solid var(--divider-color);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: var(--background-color);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Hover Effect for List Items */
+.styled-list li:hover {
+    background-color: var(--highlight-color);
+    color: var(--button-text-color);
+    border-color: var(--highlight-color);
+}
+.search-container {
+    margin-bottom: 20px;
+    text-align: center;
+    width: 75%;
+}
+.search-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.search-input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+
+/* list */
+.list-container{
+    width: 100%;
+    height: 100%;
+}
+/* Action List Styling */
+/* Action List Styling */
+.action-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.action-list-item {
+    border-bottom: 1px solid #ccc;
+    padding: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between name and + button */
+}
+
+.toggle-details {
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    background-color: var(--border-color);
+    border-radius: 10px;
+    font-size: 0.8rem;
+    width: 20px;
+    height: 20px;
+    color: white;
+    align-self: flex-start;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px; /* Space between action buttons */
+    align-self: flex-start;
+}
+
+.item-details {
+    margin-top: 3px;
+}
+.item-name{
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Buttons Styling */
+.action-button {
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    border: 1px solid var(--primary-color);
+}
+
+.action-button.danger {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+}
+
+.action-button.danger:hover {
+    background-color: var(--secondary-color);
+}
+
+.action-button:hover {
+    background-color: #ddd;
+}
+.add-button-container{
+    width: 25%;
+    text-align: right;
+}
+.add-item-button{
+    height: 40px;
+    background-color: var(--border-color);
+    color: white;
+    border: none;
+}
+.control-container{
+    display: flex;
+}
+.item-detail{
+    display: flex;
+}
+#modal-title{
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--divider-color);
+}
+
+.user-form{
+    width: 100%;
+}
+/* Modal Styles */
+.modal {
+    /* display: none; Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+    border-radius: 10px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.close-modal {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+

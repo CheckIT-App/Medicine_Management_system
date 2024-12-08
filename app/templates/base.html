@@ -3,73 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title if title else "Medicine Management System" }}</title>
+    <title>{{ title if title else _("Medicine Management System") }}</title>
     <link rel="stylesheet" href="{{ url_for('static', path='css/main.css') }}">
     {% block additional_styles %}{% endblock %}
 </head>
 <body>
+    {% set home_url = url_for('home', lang=lang) %}
     <div class="main-container">
-    <!-- Loading overlay -->
-    <div id="loading-overlay" class="loading-overlay">
-        <div class="spinner"></div>
-        {% if current_step is defined and current_step.loading_message != ""%}
-            <p id="loader-message">{{ _(current_step.loading_message) }}</p>
-        {% else %}
-            <p id="loader-message">{{_("Loading...")}}</p>
-        {% endif %}
-    </div>
-        <!-- Header with Logo and Title -->
+        <!-- Loading overlay -->
+        <div id="loading-overlay" class="loading-overlay">
+            <div class="spinner"></div>
+            {% if current_step is defined and current_step.loading_message != "" %}
+                <p id="loader-message">{{ _(current_step.loading_message) }}</p>
+            {% else %}
+                <p id="loader-message">{{ _("Loading...") }}</p>
+            {% endif %}
+        </div>
+
+        <!-- Header -->
         <header class="header">
             <div class="title-container">
-                <img src="{{ url_for('static', path='images/logo.webp') }}" alt="System Logo" class="logo">
-                <h1 class="title">MEDICINE MANAGEMENT</h1>
+                <img src="{{ url_for('static', path='images/logo.webp') }}"  alt="System Logo" class="logo">
+                <h1 class="title">{{ _("MEDICINE MANAGEMENT") }}</h1>
             </div>
             <div class="control-buttons">
-                <button class="icon-button" aria-label="Help">
-                    <img src="{{ url_for('static', path='images/help_icon.png') }}" alt="Help">
+                <a href="{{ home_url }}" aria-label="{{ _('Home') }}">
+                    <button class="icon-button">
+                        <img src="{{ url_for('static', path='images/home.png') }}" alt="{{ _('Home') }}">
+                    </button>
+                </a>
+                <button class="icon-button" aria-label="{{ _('Help') }}">
+                    <img src="{{ url_for('static', path='images/help_icon.png') }}" alt="{{ _('Help') }}">
                 </button>
-                <button class="icon-button" aria-label="Settings">
-                    <img src="{{ url_for('static', path='images/settings_icon.png') }}" alt="Settings">
+                <button class="icon-button" aria-label="{{ _('Settings') }}">
+                    <img src="{{ url_for('static', path='images/settings_icon.png') }}" alt="{{ _('Settings') }}">
                 </button>
+                
                 <!-- Language Dropdown -->
                 <div class="dropdown">
-                    <button class="icon-button dropdown-toggle" aria-label="Language">
-                        <img src="{{ url_for('static', path='images/language_icon.png') }}" alt="Language">
+                    <button class="icon-button dropdown-toggle" aria-label="{{ _('Language') }}">
+                        <img src="{{ url_for('static', path='images/language_icon.png') }}" alt="{{ _('Language') }}">
                     </button>
                     <div class="dropdown-content">
-                        <a href="{{ url_for('home', lang='en') }}" class="{% if lang == 'en' %}active{% endif %}">English</a>
-                        <a href="{{ url_for('home', lang='he') }}" class="{% if lang == 'he' %}active{% endif %}">Hebrew</a>
+                        <a href="{{ url_for('management_dashboard', lang='en') }}" class="{% if lang == 'en' %}active{% endif %}">{{ _('English') }}</a>
+                        <a href="{{ url_for('management_dashboard', lang='he') }}" class="{% if lang == 'he' %}active{% endif %}">{{ _('Hebrew') }}</a>
                     </div>
                 </div>
-                
             </div>
         </header>
-<div class="custom-header">
-    {%block header%}{%endblock%}
-</div>
-        <!-- Content Section for Each Screen -->
+
+        <!-- Customizable Header -->
+        <div class="custom-header">
+            {% block header %}{% endblock %}
+        </div>
+
+        <!-- Content Section -->
         <main class="content">
             {% block content %}{% endblock %}
         </main>
 
-        <!-- Footer Section -->
+        <!-- Footer -->
         <footer class="footer">
-             <!-- Customizable Footer Content with Background -->
-             <div class="custom-footer">
+            <div class="custom-footer">
                 {% block footer %}{% endblock %}
             </div>
-
-            <!-- Static Footer Content -->
             <div class="static-footer">
-                <p>&copy; {{ current_year }} Medicine Management System</p>
+                <p>&copy; {{ current_year }} {{ _("Medicine Management System") }}</p>
                 <span class="separator">|</span>
-                <p>Contact us: info@medmanagement.com</p>
+                <p>{{ _("Contact us: info@medmanagement.com") }}</p>
                 <span class="separator">|</span>
-                <p>Phone: +1 (555) 123-4567</p>
+                <p>{{ _("Phone: +1 (555) 123-4567") }}</p>
             </div>
         </footer>
         <script src="{{ url_for('static', path='js/main.js') }}"></script>
 
+        {% block scripts%} {%endblock%}
+        
     </div>
 </body>
 </html>

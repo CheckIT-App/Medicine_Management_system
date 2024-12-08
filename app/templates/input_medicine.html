@@ -5,7 +5,7 @@
 {% set medicine_details_url = url_for('medicine_details', lang=lang) %}
 {% set finish_placing_medicine_url = url_for('finish_placing_medicine', lang=lang) %}
 {% set authorize_barcode_url = url_for('authorize_barcode', lang=lang) %}
-{% set home_url = url_for('home', lang=lang) %}
+
 
 {% block additional_styles %}
 
@@ -56,12 +56,13 @@
             {% if error %}<p class="error">{{ error }}</p>{% endif %}
 
         {% elif stage == Steps.ENTER_MEDICINE_DETAILS %}
-            <h2 class="stage-title">{{ _("Medicine Details") }}: {{ medicine_name }}</h2>
+            <h2 class="stage-title">{{ _("Medicine Details") }}: {{ medicine_name }} </h2>
             <div class="divider"></div>
+            {% set medicine_details_url = url_for('medicine_details', lang=lang) %}
             <form class="medicine-form" method="post" action="{{ medicine_details_url }}">
                 <div class="form-group">
-                    <label for="balls_number">{{ _('Number of Tablets') }}</label>
-                    <input type="number" name="balls_number"  required>
+                    <label for="quantity">{{ _('Number of Tablets') }}</label>
+                    <input type="number" name="quantity"  required>
                 </div>
                 <div class="form-group">
                     <label for="expiration_date">{{ _('Expiration Date') }}</label>

@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block additional_styles %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/global.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='css/manage_medicine.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='css/confirmation-modal.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="main-content">
+    <h1 class="stage-title">{{ _("Manage Medicine Types") }}</h1>
+
+    <div class="list-container">
+        <div class="control-container">
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" id="search-input" class="search-input" placeholder="{{ _('Search medicine...') }}" list-name="medicine-list">
+            </div>
+            <div class="add-button-container">
+                <!-- Add Medicine Button -->
+                <button id="add-medicines-btn" class="add-item-button action-button primary">{{ _("Add medicine") }}</button>
+            </div>
+        </div>
+
+        <ul class="action-list" id="medicine-list">
+            {% for medicine in medicine_types %}
+                <li class="action-list-item" data-name="{{ medicine.name }} {{ medicine.barcode }}" data-id="{{ medicine.id }}">
+                    <div class="item-header">
+                        <div class="header-left">
+                            <button type="button" class="toggle-details">+</button>
+                            <div class="item-content">
+                                <span class="item-name">{{ medicine.name }}</span>
+                                <div class="item-details hidden">
+                                    <span class="item-detail"><p>{{ _("Barcode") }}</p>:<p> {{ medicine.barcode }}</p></span>
+                                    <span class="item-detail"><p>{{ _("Description") }}</p>:<p> {{ medicine.description }}</p></span>
+                                    <span class="item-detail"><p>{{ _("Size") }}</p>:<p> {{ _(medicine.size.name) }}</p></span>
+                                    <span class="item-detail"><p>{{ _("Position") }}</p>:<p> ({{ medicine.x }}, {{ medicine.y }})</p></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header-actions">
+                            <button type="button" class="edit-button action-button" data-entity-type="medicines" data-entity-id="{{ medicine.id }}">{{ _("Edit") }}</button>
+                            <button type="button" class="delete-button action-button danger" data-entity-type="medicines" data-entity-id="{{ medicine.id }}">{{ _("Delete") }}</button>
+                            </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<!-- Medicine Modal -->
+<div id="entity-modal" class="modal hidden">
+    <div class="modal-content">
+        <span id="close-entity-modal" class="close-modal">&times;</span>
+        <h2 id="modal-title" add-text="{{ _('Add medicine') }}" edit-text="{{ _('Edit medicine') }}">{{ _("Add medicine") }}</h2>
+        <form id="entity-form" action="{{ url_for('save_medicine_type', lang=lang) }}" method="post">
+            <input type="hidden" name="medicine_id" id="entity_id">
+            <div class="form-group">
+                <label for="name">{{ _("Name") }}</label>
+                <input type="text" name="name" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="barcode">{{ _("Barcode") }}</label>
+                <input type="text" name="barcode" id="barcode" required>
+            </div>
+            <div class="form-group">
+                <label for="description">{{ _("Description") }}</label>
+                <textarea name="description" id="description"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="size_id">{{ _("Size") }}</label>
+                <select name="size_id" id="size_id" required>
+                    {% for size in sizes %}
+                        <option value="{{ size.id }}">{{ _(size.name) }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="x">{{ _("X Position") }}</label>
+                <input type="number" name="x" id="x" required>
+            </div>
+            <div class="form-group">
+                <label for="y">{{ _("Y Position") }}</label>
+                <input type="number" name="y" id="y" required>
+            </div>
+            <button type="submit" class="submit-button">{{ _("Save") }}</button>
+        </form>
+    </div>
+</div>
+
+<!-- Confirmation Modal -->
+{% include "partials/confirmation-modal.html" %}
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', path='js/confirmation-modal.js') }}"></script>
+<script src="{{ url_for('static', path='js/manage-modals.js') }}"></script>
+{% endblock %}

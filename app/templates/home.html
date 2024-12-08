@@ -2,23 +2,41 @@
 
 {% block additional_styles %}
     <link rel="stylesheet" href="{{ url_for('static', path='css/home.css') }}">
-    {%endblock%}
-    {%block header%}
-    {%endblock%}
-    {% block content %}
-    <div class="container">
-        <h1 class="sub-title">{{ _("Medical Management System") }}</h1>
-    
-        <!-- Buttons -->
-        <div class="button-group">
-            {% set management_url = url_for('management', lang=lang) %}
-            {% set input_medicine_url = url_for('input_medicine', lang=lang) %}
-            {% set dispense_medicine_url = url_for('dispense_medicine', lang=lang) %}
-            <button onclick="location.href='{{ management_url }}'" class="action-button">{{ _("Management") }}</button>
-            <button onclick="location.href='{{ input_medicine_url }}'" class="action-button">{{ _("Input a Medicine") }}</button>
-            <button onclick="location.href='{{ dispense_medicine_url }}'" class="action-button">{{ _("Bring Medicines to a Patient") }}</button>
-        </div>
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="sub-title">{{ _("Medical Management System") }}</h1>
+
+    <!-- Buttons -->
+    <div class="button-group">
+        {% set management_url = url_for('management_dashboard', lang=lang) %}
+        {% set input_medicine_url = url_for('input_medicine', lang=lang) %}
+        {% set dispense_medicine_url = url_for('dispense_medicine', lang=lang) %}
+
+        {% if user.role.name == "Admin" %}
+            <button onclick="location.href='{{ management_url }}'" class="action-button">
+                {{ _("Management") }}
+            </button>
+        {% endif %}
+
+        {% if user.role.name in ["Admin", "Pharmacist"] %}
+            <button onclick="location.href='{{ input_medicine_url }}'" class="action-button">
+                {{ _("Input a Medicine") }}
+            </button>
+        {% endif %}
+
+        {% if user.role.name in ["Admin", "Technician"] %}
+            <button onclick="location.href='{{ dispense_medicine_url }}'" class="action-button">
+                {{ _("Bring Medicines to a Patient") }}
+            </button>
+        {% endif %}
     </div>
-{%endblock%}
-{%block footer%}
-{%endblock%}
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

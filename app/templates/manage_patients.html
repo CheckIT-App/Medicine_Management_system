@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block additional_styles %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/global.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='css/confirmation-modal.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="main-content">
+    <h1 class="stage-title">{{ _("Manage Patients") }}</h1>
+
+    <div class="list-container">
+        <div class="control-container">
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" id="search-input" class="search-input" placeholder="{{ _('Search patient...') }}" list-name="patient-list">
+            </div>
+            <div class="add-button-container">
+                <!-- Add Patient Button -->
+                <button id="add-patients-btn" class="add-item-button action-button primary">{{ _("Add patient") }}</button>
+            </div>
+        </div>
+
+        <!-- Patient List -->
+        <ul class="action-list" id="patient-list">
+            {% for patient in patients %}
+            <li class="action-list-item" data-name="{{ patient.first_name }} {{ patient.last_name }} {{ patient.identity_number }}" data-id="{{ patient.identity_number }}">
+                <div class="item-header">
+                    <div class="header-left">
+                        <button type="button" class="toggle-details">+</button>
+                        <div class="item-content">
+                            <span class="item-name">{{ patient.first_name }} {{ patient.last_name }}</span>
+                            <div class="item-details hidden">
+                                <span class="item-detail"><p>{{ _("Identity Number") }}</p>: <p>{{ patient.identity_number }}</p></span>
+                                <span class="item-detail"><p>{{ _("Age") }}</p>: <p>{{ patient.age }}</p></span>
+                                <span class="item-detail"><p>{{ _("Gender") }}</p>: <p>{{ _(patient.gender.name) }}</p></span>
+                                <span class="item-detail"><p>{{ _("Contact Info") }}</p>: <p>{{ patient.contact_info }}</p></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <button type="button" class="edit-button action-button" data-entity-type="patients" data-entity-id="{{ patient.id }}">{{ _("Edit") }}</button>
+                        <button type="button" class="delete-button action-button danger" data-entity-type="patients" data-entity-id="{{ patient.id }}">{{ _("Delete") }}</button>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<!-- Patient Modal -->
+<div id="entity-modal" class="modal hidden">
+    <div class="modal-content">
+        <span id="close-entity-modal" class="close-modal">&times;</span>
+        <h2 id="modal-title"add-text="{{ _('Add patient') }}" edit-text="{{ _('Edit patient') }}">{{ _("Add patient") }}</h2>
+        <form id="entity-form" action="{{ url_for('save_patient', lang=lang) }}" method="post">
+            <input type="hidden" name="patient_id" id="entity_id">
+            <div class="form-group">
+                <label for="first_name">{{ _("First Name") }}</label>
+                <input type="text" name="first_name" id="first_name" required>
+            </div>
+            <div class="form-group">
+                <label for="last_name">{{ _("Last Name") }}</label>
+                <input type="text" name="last_name" id="last_name" required>
+            </div>
+            <div class="form-group">
+                <label for="identity_number">{{ _("Identity Number") }}</label>
+                <input type="text" name="identity_number" id="identity_number" required>
+            </div>
+            <div class="form-group">
+                <label for="age">{{ _("Age") }}</label>
+                <input type="number" name="age" id="age" required>
+            </div>
+            <div class="form-group">
+                <label for="gender_id">{{ _("Gender") }}</label>
+                <select name="gender_id" id="gender_id" required>
+                    {% for gender in genders %}
+                    <option value="{{ gender.id }}">{{ _(gender.name) }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="contact_info">{{ _("Contact Info") }}</label>
+                <input type="text" name="contact_info" id="contact_info">
+            </div>
+            <button type="submit" class="submit-button">{{ _("Save") }}</button>
+        </form>
+    </div>
+</div>
+
+<!-- Confirmation Modal -->
+{% include "partials/confirmation-modal.html" %}
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', path='js/confirmation-modal.js') }}"></script>
+<script src="{{ url_for('static', path='js/manage-modals.js') }}"></script>
+{% endblock %}

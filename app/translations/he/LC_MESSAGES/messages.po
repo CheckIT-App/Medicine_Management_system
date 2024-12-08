@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-11 09:47+0200\n"
+"POT-Creation-Date: 2024-12-08 12:24+0300\n"
 "PO-Revision-Date: 2024-11-05 11:56+0200\n"
 "Last-Translator: U-DESKTOP-6BSMTJK\\User <User@desktop-6bsmtjk>\n"
 "Language-Team: Hebrew\n"
@@ -19,21 +19,25 @@ msgstr ""
 
 #: app/templates/index.html:13
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\index.html⁩:13
+#: C:\medicine_project\Medicine_Management_system\app\templates\index.html:13
 msgid "Robot Arm Control"
 msgstr "שליטה בזרוע רובוטית"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\routers\input_medicine.py⁩:39
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\routers\input_medicine.py⁩:47
+#: C:\medicine_project\Medicine_Management_system\app\routers\input_medicine.py:51
 msgid "Invalid barcode. Please try again."
 msgstr "ברקוד שגוי. אנא נסה שוב."
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\routers\input_medicine.py⁩:61
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\routers\input_medicine.py⁩:71
+#: C:\medicine_project\Medicine_Management_system\app\routers\input_medicine.py:88
 msgid "All fields are required."
 msgstr "נדרשים כל השדות."
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\routers\input_medicine.py⁩:94
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\routers\input_medicine.py⁩:110
+#: C:\medicine_project\Medicine_Management_system\app\routers\input_medicine.py:143
 msgid "Authorization failed. Barcode does not match."
 msgstr "האימות נכשל. הברקוד לא תואם."
 
@@ -328,30 +332,36 @@ msgstr "בית"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:11
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:10
+#: C:\medicine_project\Medicine_Management_system\app\templates\home.html:12
 msgid "Medical Management System"
 msgstr "מערכת לניהול תרופות"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:15
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:17
+#: C:\medicine_project\Medicine_Management_system\app\templates\home.html:22
 msgid "Management"
 msgstr "ניהול"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:16
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:18
+#: C:\medicine_project\Medicine_Management_system\app\templates\home.html:28
 msgid "Input a Medicine"
 msgstr "הכנסת תרופה"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:17
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:19
+#: C:\medicine_project\Medicine_Management_system\app\templates\home.html:34
 msgid "Bring Medicines to a Patient"
 msgstr "הבאת תרופות למטופל"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\index.html⁩:17
+#: C:\medicine_project\Medicine_Management_system\app\templates\index.html:17
 msgid "Move Up"
 msgstr "הזז למעלה"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:24
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:34
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:36
 msgid "Scan the Medicine Barcode"
 msgstr "סרוק את ברקוד התרופה"
 
@@ -359,154 +369,510 @@ msgstr "סרוק את ברקוד התרופה"
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:66
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:49
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:106
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:51
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:109
 msgid "Enter Barcode"
 msgstr "הזן ברקוד"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:31
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:45
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:52
+#: C:\medicine_project\Medicine_Management_system\app\templates\dispense_medicine.html:44
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:54
 msgid "Scan"
 msgstr "סרוק"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:36
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:57
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:15
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:59
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:15
 msgid "Medicine Details"
 msgstr "פרטי התרופה"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:40
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:61
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:64
 msgid "Number of Tablets"
 msgstr "מספר הטבליות"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:44
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:65
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:68
 msgid "Expiration Date"
 msgstr "תאריך תפוגה"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:48
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:69
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:72
 msgid "Batch Number"
 msgstr "מספר אצווה"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:51
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:72
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:75
 msgid "Confirm Details"
 msgstr "אשר פרטים"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:57
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:78
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:81
 msgid "Place Medicine in Storage"
 msgstr "הנח את התרופה באחסון"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:58
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:86
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:89
 msgid "The storage location is now open. Please place the medicine inside."
 msgstr "מיקום האחסון פתוח כעת. אנא הנח את התרופה בפנים."
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:59
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:87
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:90
 msgid "Finish Entering Medicine"
 msgstr "סיים הכנסת תרופה"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:62
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:91
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:94
 msgid "Scan the Barcode Again for Authorization"
 msgstr "סרוק את הברקוד שוב לצורך אימות"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:69
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:109
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:112
 msgid "Authorize"
 msgstr "אשר"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:74
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:114
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:117
 msgid "The Medicine Was Successfully Received"
 msgstr "התרופה התקבלה בהצלחה"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:77
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:116
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:119
 msgid "Add Another Medicine"
 msgstr "הוסף תרופה נוספת"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:78
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:81
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:117
+#: C:\medicine_project\Medicine_Management_system\app\templates\dispense_medicine.html:80
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:120
 msgid "Finish and Return to Home"
 msgstr "סיים וחזור לדף הבית"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\routers\dispense_medicine.py⁩:38
+#: C:\medicine_project\Medicine_Management_system\app\routers\dispense_medicine.py:45
 msgid "Invalid patient barcode. Please try again."
 msgstr "ברקוד חולה לא תקין. נסה שוב."
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:32
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:41
+#: C:\medicine_project\Medicine_Management_system\app\templates\dispense_medicine.html:31
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:41
 msgid "Scan Patient Barcode"
 msgstr "סרוק ברקוד מטופל"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:42
+#: C:\medicine_project\Medicine_Management_system\app\templates\dispense_medicine.html:41
 msgid "Enter Patient Barcode"
 msgstr "הכנס ברקוד מטופל"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:50
+#: C:\medicine_project\Medicine_Management_system\app\templates\dispense_medicine.html:49
 msgid "Select Medicines for Dispensing"
 msgstr "בחר תרופות לניפוק"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:61
+#: C:\medicine_project\Medicine_Management_system\app\templates\dispense_medicine.html:60
 msgid "Select All"
 msgstr "בחר הכל"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:62
+#: C:\medicine_project\Medicine_Management_system\app\templates\dispense_medicine.html:61
 msgid "Clear All"
 msgstr "נקה הכל"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:64
+#: C:\medicine_project\Medicine_Management_system\app\templates\dispense_medicine.html:63
 msgid "Dispense Selected Medicines"
 msgstr "ניפוק תרופות נבחרות"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:68
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:43
+#: C:\medicine_project\Medicine_Management_system\app\templates\dispense_medicine.html:67
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:43
 msgid "Dispensing Medicines"
 msgstr "ניפוק תרופות"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:77
+#: C:\medicine_project\Medicine_Management_system\app\templates\dispense_medicine.html:76
 msgid "The medicines are now ready for the patient."
 msgstr "התרופות מוכנות למטופל"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:79
+#: C:\medicine_project\Medicine_Management_system\app\templates\dispense_medicine.html:78
 msgid "The selected medicines are being dispensed into the cup. Please wait..."
 msgstr "התרופות הנבחרות מנופקות כרגע לתוך הכוס. נא המתן..."
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:14
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:14
 msgid "Scan Barcode"
 msgstr "הזנת ברקוד"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:16
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:16
 msgid "Place in Storage"
 msgstr "הכנסת התרופה"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:17
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:17
 msgid "Re-scan for Authorization"
 msgstr "אימות"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:18
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:18
 msgid "Confirmation"
 msgstr "אישור וסיום"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:25
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:28
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:50
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:25
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:28
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:50
 msgid "Processing barcode"
 msgstr "מעבד ברקוד"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:26
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:26
 msgid "Opening storage"
 msgstr "פותח את תא התרופות"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:42
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:42
 msgid "Select Medicines"
 msgstr "בחר תרופות"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:51
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:51
 msgid "Dispensing medicines. Please wait..."
 msgstr "מנפק תרופות. נא המתן..."
+
+#: C:\medicine_project\Medicine_Management_system\app\handlers\custom_http_exceptions.py:15
+msgid "Unauthorized"
+msgstr "לא מורשה"
+
+#: C:\medicine_project\Medicine_Management_system\app\handlers\custom_http_exceptions.py:16
+msgid "You must log in to access this page."
+msgstr "עליך להתחבר כדי לגשת לדף זה."
+
+#: C:\medicine_project\Medicine_Management_system\app\handlers\custom_http_exceptions.py:18
+#: C:\medicine_project\Medicine_Management_system\app\templates\login.html:5
+#: C:\medicine_project\Medicine_Management_system\app\templates\login.html:13
+#: C:\medicine_project\Medicine_Management_system\app\templates\login.html:26
+msgid "Login"
+msgstr "התחברות"
+
+#: C:\medicine_project\Medicine_Management_system\app\handlers\custom_http_exceptions.py:28
+msgid "Access Denied"
+msgstr "הגישה נדחתה"
+
+#: C:\medicine_project\Medicine_Management_system\app\handlers\custom_http_exceptions.py:29
+msgid "You do not have the necessary privileges to view this page."
+msgstr "אין לך הרשאות מתאימות לצפייה בדף זה."
+
+#: C:\medicine_project\Medicine_Management_system\app\handlers\custom_http_exceptions.py:31
+msgid "Go Home"
+msgstr "חזור לדף הבית"
+
+#: C:\medicine_project\Medicine_Management_system\app\routers\dispense_medicine.py:62
+msgid "No active prescriptions found for this patient."
+msgstr "לא נמצאו מרשמים פעילים עבור מטופל זה."
+
+#: C:\medicine_project\Medicine_Management_system\app\routers\dispense_medicine.py:108
+msgid "No medicines selected for dispensing."
+msgstr "לא נבחרו תרופות לחלוקה."
+
+#: C:\medicine_project\Medicine_Management_system\app\routers\dispense_medicine.py:119
+msgid "Invalid or out-of-stock medicine selected."
+msgstr "נבחרה תרופה שגויה או חסרה במלאי."
+
+#: C:\medicine_project\Medicine_Management_system\app\routers\input_medicine.py:133
+msgid "Barcode not found."
+msgstr "הברקוד לא נמצא."
+
+#: C:\medicine_project\Medicine_Management_system\app\routers\input_medicine.py:150
+msgid "Medicine details not found."
+msgstr "פרטי התרופה לא נמצאו."
+
+#: C:\medicine_project\Medicine_Management_system\app\routers\input_medicine.py:154
+msgid "Medicine type not found."
+msgstr "סוג התרופה לא נמצא."
+
+#: C:\medicine_project\Medicine_Management_system\app\routers\medicines.py:56
+msgid "Medicine type not found"
+msgstr "סוג התרופה לא נמצא"
+
+#: C:\medicine_project\Medicine_Management_system\app\routers\patients.py:61
+msgid "Patient not found"
+msgstr "המטופל לא נמצא"
+
+#: C:\medicine_project\Medicine_Management_system\app\routers\patients.py:74
+#: C:\medicine_project\Medicine_Management_system\app\routers\users.py:82
+msgid "Identity number already exists"
+msgstr "מספר הזהות כבר קיים"
+
+#: C:\medicine_project\Medicine_Management_system\app\routers\users.py:62
+msgid "User not found"
+msgstr "המשתמש לא נמצא"
+
+#: C:\medicine_project\Medicine_Management_system\app\routers\users.py:80
+msgid "Email already exists"
+msgstr "כתובת האימייל כבר קיימת"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\base.html:6
+#: C:\medicine_project\Medicine_Management_system\app\templates\base.html:71
+msgid "Medicine Management System"
+msgstr "מערכת ניהול תרופות"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\base.html:19
+msgid "Loading..."
+msgstr "טוען..."
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\base.html:27
+msgid "MEDICINE MANAGEMENT"
+msgstr "ניהול תרופות"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\base.html:48
+msgid "English"
+msgstr "אנגלית"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\base.html:49
+msgid "Hebrew"
+msgstr "עברית"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\base.html:73
+msgid "Contact us: info@medmanagement.com"
+msgstr "צור קשר: info@medmanagement.com"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\base.html:75
+msgid "Phone: +1 (555) 123-4567"
+msgstr "טלפון: +1 (555) 123-4567"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\login.html:16
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:65
+msgid "Username"
+msgstr "שם משתמש"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\login.html:20
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:85
+msgid "Password"
+msgstr "סיסמה"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\management_dashboard.html:8
+msgid "Management Dashboard"
+msgstr "לוח ניהול"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\management_dashboard.html:11
+msgid "Manage Medicines"
+msgstr "ניהול תרופות"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\management_dashboard.html:12
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:11
+msgid "Manage Users"
+msgstr "ניהול משתמשים"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\management_dashboard.html:13
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:10
+msgid "Manage Patients"
+msgstr "ניהול מטופלים"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\management_dashboard.html:14
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:11
+msgid "Manage Prescriptions"
+msgstr "ניהול מרשמים"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:11
+msgid "Manage Medicine Types"
+msgstr "ניהול סוגי תרופות"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:21
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:56
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:88
+msgid "Add medicine"
+msgstr "הוסף תרופה"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:34
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:64
+msgid "Barcode"
+msgstr "ברקוד"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:35
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:68
+msgid "Description"
+msgstr "תיאור"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:36
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:72
+msgid "Size"
+msgstr "גודל"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:37
+msgid "Position"
+msgstr "מיקום"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:60
+msgid "Name"
+msgstr "שם"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:80
+msgid "X Position"
+msgstr "מיקום X"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:84
+msgid "Y Position"
+msgstr "מיקום Y"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:87
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:87
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:90
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:96
+msgid "Save"
+msgstr "שמור"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:20
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:56
+msgid "Add patient"
+msgstr "הוסף מטופל"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:34
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:68
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:77
+msgid "Identity Number"
+msgstr "מספר זהות"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:35
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:72
+msgid "Age"
+msgstr "גיל"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:36
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:76
+msgid "Gender"
+msgstr "מין"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:37
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:84
+msgid "Contact Info"
+msgstr "פרטי קשר"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:60
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:69
+msgid "First Name"
+msgstr "שם פרטי"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:64
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:73
+msgid "Last Name"
+msgstr "שם משפחה"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:21
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:63
+msgid "Add prescription"
+msgstr "הוסף מרשם"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:33
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:68
+msgid "Patient"
+msgstr "מטופל"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:34
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:76
+msgid "Prescribed By"
+msgstr "נרשם על ידי"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:49
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:42
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:42
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:43
+msgid "Edit"
+msgstr "ערוך"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:50
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:43
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:43
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:44
+msgid "Delete"
+msgstr "מחק"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:84
+msgid "Medicines"
+msgstr "תרופות"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:21
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:61
+msgid "Add user"
+msgstr "הוסף משתמש"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:36
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:81
+msgid "Email"
+msgstr "אימייל"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:37
+msgid "ID"
+msgstr "מזהה"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:38
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:89
+msgid "Role"
+msgstr "תפקיד"
+
+#: C:\medicine_project\Medicine_Management_system\app\main.py:119
+msgid "Invalid username or password"
+msgstr "שם משתמש או סיסמה שגויים"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:17
+msgid "Search user..."
+msgstr "חפש משתמש..."
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:17
+msgid "Search prescription..."
+msgstr "חפש מרשם..."
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:17
+msgid "Search medicine..."
+msgstr "חפש תרופה..."
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:17
+msgid "Search patient..."
+msgstr "חפש מטופל..."
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:85
+msgid "Medicine"
+msgstr "תרופה"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:85
+msgid "Quantity"
+msgstr "כמות"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:85
+msgid "Edit medicine"
+msgstr "ערוך פרטי תרופה"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:85
+msgid "Edit user"
+msgstr "ערוך פרטי משתמש"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:85
+msgid "Edit prescription"
+msgstr "ערוך מרשם"
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:85
+msgid "Edit patient"
+msgstr "ערוך פרטי מטופל"
+

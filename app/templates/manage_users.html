@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block additional_styles %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/global.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='css/manage_users.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='css/confirmation-modal.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="main-content">
+    <h1 class="stage-title">{{ _("Manage Users") }}</h1>
+    
+    <div class="list-container">
+   <div class="control-container">
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="search-input" class="search-input" placeholder="{{ _('Search user...') }}" list-name="user-list">
+        </div>
+        <div class="add-button-container">
+        <!-- Add User Button -->
+        <button id="add-users-btn" class="add-item-button action-button primary">{{ _("Add user") }}</button>
+    </div>
+    </div>
+        
+           
+            
+            <ul class="action-list" id="user-list">
+                {% for user in users %}
+                    <li class="action-list-item" data-name="{{ user.username }} {{ user.first_name }} {{ user.last_name }} {{ user.email }}" data-id="{{ user.identity_number }}" >
+                        <div class="item-header">
+                            <div class="header-left">
+                                <button type="button" class="toggle-details">+</button>
+                                <div class="item-content">
+                                    <span class="item-name">{{ user.first_name }} {{ user.last_name }} ({{ user.username }})</span>
+                                    <div class="item-details hidden">
+                                        <span class="item-detail"><p>{{ _("Email") }}</p>:<p> {{ user.email }}</p></span>
+                                        <span class="item-detail"><p>{{ _("ID") }}</p>:<p> {{ user.identity_number }}</p></span>
+                                        <span class="item-detail"><p>{{ _("Role") }}</p>:<p>{{ _(user.role.name) }}</p></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="header-actions">
+                                <button type="button" class="edit-button action-button" data-entity-type="users" data-entity-id="{{ user.id }}">{{ _("Edit") }}</button>
+                                <button type="button" class="delete-button action-button danger" data-entity-type="users" data-entity-id="{{ user.id }}">{{ _("Delete") }}</button>
+                                </div>
+                        </div>
+                        
+                    </li>
+                {% endfor %}
+            </ul>
+            
+        </div>
+</div>  
+    
+
+    
+<!-- User Modal -->
+<div id="entity-modal" class="modal hidden">
+    <div class="modal-content">
+        <span id="close-entity-modal" class="close-modal">&times;</span>
+        <h2 id="modal-title" add-text="{{ _('Add user') }}" edit-text="{{ _('Edit user') }}">{{ _("Add user") }}</h2>
+        <form id="entity-form" action="{{ url_for('save_user', lang=lang) }}" method="post">
+            <input type="hidden" name="user_id" id="entity_id">
+            <div class="form-group">
+                <label for="username">{{ _("Username") }}</label>
+                <input type="text" name="username" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="first_name">{{ _("First Name") }}</label>
+                <input type="text" name="first_name" id="first_name" required>
+            </div>
+            <div class="form-group">
+                <label for="last_name">{{ _("Last Name") }}</label>
+                <input type="text" name="last_name" id="last_name" required>
+            </div>
+            <div class="form-group">
+                <label for="identity_number">{{ _("Identity Number") }}</label>
+                <input type="text" name="identity_number" id="identity_number" required>
+            </div>
+            <div class="form-group">
+                <label for="email">{{ _("Email") }}</label>
+                <input type="email" name="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">{{ _("Password") }}</label>
+                <input type="password" name="password" id="password" required>
+            </div>
+            <div class="form-group">
+                <label for="role_id">{{ _("Role") }}</label>
+                <select name="role_id" id="role_id" required>
+                    {% for role in roles %}
+                        <option value="{{ role.id }}">{{ _(role.name) }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="submit-button">{{ _("Save") }}</button>
+        </form>
+    </div>
+</div>
+
+<!-- Confirmation Modal -->
+{% include "partials/confirmation-modal.html" %}
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', path='js/confirmation-modal.js') }}"></script>
+<script src="{{ url_for('static', path='js/manage-modals.js') }}"></script>
+{% endblock %}

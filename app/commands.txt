@@ -20,11 +20,17 @@ create mo:
 msgfmt --verbose app/translations/he/LC_MESSAGES/messages.po -o app/translations/he/LC_MESSAGES/messages.mo
 msgfmt --verbose app/translations/en/LC_MESSAGES/messages.po -o app/translations/en/LC_MESSAGES/messages.mo
 
+create json:
+po2json app/translations/he/LC_MESSAGES/messages.po app/translations/he/LC_MESSAGES/messages.json
+
 
 activate venv:
+python -m venv venv
 .\venv\Scripts\activate
+pip install -r requirements.txt
 pip install uvicorn
 uvicorn app.main:app --reload
+pip install -r requirements.txt
 
 
 

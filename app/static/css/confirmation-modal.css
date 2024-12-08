@@ -1,0 +1,99 @@
+/* Add the modal styles here */
+.confirmation-modal {
+    display: flex;/* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Hidden State */
+.confirmation-modal.hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.confirmation-modal .modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+.confirmation-modal .modal-box {
+    position: relative;
+    z-index: 2;
+    background: #fff;
+    padding: 20px;
+    width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.confirmation-modal .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.confirmation-modal .modal-confirmation-header h2 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.confirmation-modal .close-button {
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+}
+
+.confirmation-modal .close-button:hover {
+    color: var(--border-color);
+}
+
+.confirmation-modal .modal-body {
+    margin: 20px 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+.confirmation-modal .modal-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.confirmation-modal .danger-button {
+    background: var(--border-color);
+    color: #fff;
+}
+
+/* .confirmation-modal .action-button.danger-button:hover {
+    background: var(--text-color);
+} */
+
+.confirmation-modal .action-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.confirmation-modal .action-button:hover {
+    background: #ddd;
+}

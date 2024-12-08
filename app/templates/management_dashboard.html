@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block additional_styles %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/global.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='css/management_dashboard.css') }}">
+{% endblock %}
+{% block content %}
+<div class="main-content">
+    <h1 class="stage-title">{{ _("Management Dashboard") }}</h1>
+    <div class="divider"></div>
+    <ul class="styled-list styled-list--dashboard">
+        <li><a href="{{ url_for('manage_medicine_types', lang=lang) }}">{{ _("Manage Medicines") }}</a></li>
+        <li><a href="{{ url_for('manage_users', lang=lang) }}">{{ _("Manage Users") }}</a></li>
+        <li><a href="{{ url_for('manage_patients', lang=lang) }}">{{ _("Manage Patients") }}</a></li>
+        <li><a href="{{ url_for('manage_prescriptions', lang=lang) }}">{{ _("Manage Prescriptions") }}</a></li>
+    </ul>
+</div>
+{% endblock %}

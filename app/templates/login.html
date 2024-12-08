@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ _("Login") }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/global.css') }}">
+</head>
+<body>
+    <div class="main-container">
+    <main class="content">
+    <div class="main-content">
+        <h1 class="stage-title">{{ _("Login") }}</h1>
+        <form action="{{ url_for('auth', lang=lang) }}" method="post" class="medicine-form">
+            <div class="form-group">
+                <label for="username">{{ _("Username") }}</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">{{ _("Password") }}</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+            <button type="submit" class="submit-button">{{ _("Login") }}</button>
+        </form>
+    </div>
+
+</main>
+</div>
+</body>
+</html>

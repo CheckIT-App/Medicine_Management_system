@@ -28,7 +28,7 @@ class HardwareInterface:
         # Trigger the barcode scanner and get the scanned data
         # Simulated delay to account for hardware response time
         await asyncio.sleep(1)  # Simulated hardware delay
-        scanned_data = "123456789"  # Mocked barcode data
+        scanned_data = "1"  # Mocked barcode data
         print(f"Scanned barcode: {scanned_data}")
         return scanned_data
 
@@ -46,15 +46,15 @@ class HardwareInterface:
         print("Storage is closed.")
         return True
 
-    def get_patient_medicines(self, patient_barcode):
-        # Simulated database lookup for patient’s active medicines
-        patient_medicines = {
-            "111111111": [
-                {"id": "med1", "name": "Aspirin", "dosage": "100mg"},
-                {"id": "med2", "name": "Paracetamol", "dosage": "500mg"}
-            ]
-        }
-        return patient_medicines.get(patient_barcode, [])
+    # def get_patient_medicines(self, patient_barcode):
+    #     # Simulated database lookup for patient’s active medicines
+    #     patient_medicines = {
+    #         "111111111": [
+    #             {"id": "med1", "name": "Aspirin", "dosage": "100mg"},
+    #             {"id": "med2", "name": "Paracetamol", "dosage": "500mg"}
+    #         ]
+    #     }
+    #     return patient_medicines.get(patient_barcode, [])
 
     async def dispense_medicines(self, selected_medicines):
         # Simulate dispensing time based on the number of medicines

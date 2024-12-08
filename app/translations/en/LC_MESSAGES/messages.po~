@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-05 11:40+0200\n"
+"POT-Creation-Date: 2024-12-08 11:14+0300\n"
 "PO-Revision-Date: 2024-11-05 11:54+0200\n"
 "Last-Translator: U-DESKTOP-6BSMTJK\\User <User@desktop-6bsmtjk>\n"
 "Language-Team: English\n"
@@ -19,18 +19,25 @@ msgstr ""
 
 #: app/templates/index.html:13
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\index.html⁩:13
+#: C:\medicine_project\Medicine_Management_system\app\templates\index.html:13
 msgid "Robot Arm Control"
 msgstr "Robot Arm Control"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\routers\input_medicine.py⁩:39
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\routers\input_medicine.py⁩:47
+#: C:\medicine_project\Medicine_Management_system\app\routers\input_medicine.py:51
 msgid "Invalid barcode. Please try again."
 msgstr "Invalid barcode. Please try again."
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\routers\input_medicine.py⁩:61
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\routers\input_medicine.py⁩:71
+#: C:\medicine_project\Medicine_Management_system\app\routers\input_medicine.py:88
 msgid "All fields are required."
 msgstr "All fields are required."
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\routers\input_medicine.py⁩:94
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\routers\input_medicine.py⁩:110
+#: C:\medicine_project\Medicine_Management_system\app\routers\input_medicine.py:143
 msgid "Authorization failed. Barcode does not match."
 msgstr "Authorization failed. Barcode does not match."
 
@@ -324,98 +331,501 @@ msgid "Home"
 msgstr "Home"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:11
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:10
+#: C:\medicine_project\Medicine_Management_system\app\templates\home.html:12
 msgid "Medical Management System"
 msgstr "Medical Management System"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:15
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:17
+#: C:\medicine_project\Medicine_Management_system\app\templates\home.html:22
 msgid "Management"
 msgstr "Management"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:16
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:18
+#: C:\medicine_project\Medicine_Management_system\app\templates\home.html:28
 msgid "Input a Medicine"
 msgstr "Input a Medicine"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:17
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\home.html⁩:19
+#: C:\medicine_project\Medicine_Management_system\app\templates\home.html:34
 msgid "Bring Medicines to a Patient"
 msgstr "Bring Medicines to a Patient"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\index.html⁩:17
+#: C:\medicine_project\Medicine_Management_system\app\templates\index.html:17
 msgid "Move Up"
 msgstr "Move Up"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:24
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:34
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:36
 msgid "Scan the Medicine Barcode"
 msgstr "Scan the Medicine Barcode"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:28
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:66
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:49
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:106
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:51
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:109
 msgid "Enter Barcode"
 msgstr "Enter Barcode"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:31
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:45
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:52
+#: C:\medicine_project\Medicine_Management_system\app\templates\dispense_medicine.html:44
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:54
 msgid "Scan"
 msgstr "Scan"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:36
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:57
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:15
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:59
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:15
 msgid "Medicine Details"
 msgstr "Medicine Details"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:40
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:61
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:64
 msgid "Number of Tablets"
 msgstr "Number of Tablets"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:44
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:65
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:68
 msgid "Expiration Date"
 msgstr "Expiration Date"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:48
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:69
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:72
 msgid "Batch Number"
 msgstr "Batch Number"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:51
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:72
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:75
 msgid "Confirm Details"
 msgstr "Confirm Details"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:57
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:78
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:81
 msgid "Place Medicine in Storage"
 msgstr "Place Medicine in Storage"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:58
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:86
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:89
 msgid "The storage location is now open. Please place the medicine inside."
 msgstr "The storage location is now open. Please place the medicine inside."
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:59
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:87
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:90
 msgid "Finish Entering Medicine"
 msgstr "Finish Entering Medicine"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:62
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:91
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:94
 msgid "Scan the Barcode Again for Authorization"
 msgstr "Scan the Barcode Again for Authorization"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:69
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:109
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:112
 msgid "Authorize"
 msgstr "Authorize"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:74
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:114
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:117
 msgid "The Medicine Was Successfully Received"
 msgstr "The Medicine Was Successfully Received"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:77
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:116
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:119
 msgid "Add Another Medicine"
 msgstr "Add Another Medicine"
 
 #: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:78
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:81
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\input_medicine.html⁩:117
+#: C:\medicine_project\Medicine_Management_system\app\templates\dispense_medicine.html:80
+#: C:\medicine_project\Medicine_Management_system\app\templates\input_medicine.html:120
 msgid "Finish and Return to Home"
 msgstr "Finish and Return to Home"
 
-#~ msgid "Scan Barcode"
-#~ msgstr "Enter Barcode"
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\routers\dispense_medicine.py⁩:38
+#: C:\medicine_project\Medicine_Management_system\app\routers\dispense_medicine.py:45
+msgid "Invalid patient barcode. Please try again."
+msgstr ""
 
-#~ msgid "Place in Storage"
-#~ msgstr "Place in Storage"
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:32
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:41
+#: C:\medicine_project\Medicine_Management_system\app\templates\dispense_medicine.html:31
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:41
+msgid "Scan Patient Barcode"
+msgstr ""
 
-#~ msgid "Re-scan for Authorization"
-#~ msgstr "Authorization"
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:42
+#: C:\medicine_project\Medicine_Management_system\app\templates\dispense_medicine.html:41
+msgid "Enter Patient Barcode"
+msgstr ""
 
-#~ msgid "Confirmation"
-#~ msgstr "Confirmation"
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:50
+#: C:\medicine_project\Medicine_Management_system\app\templates\dispense_medicine.html:49
+msgid "Select Medicines for Dispensing"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:61
+#: C:\medicine_project\Medicine_Management_system\app\templates\dispense_medicine.html:60
+msgid "Select All"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:62
+#: C:\medicine_project\Medicine_Management_system\app\templates\dispense_medicine.html:61
+msgid "Clear All"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:64
+#: C:\medicine_project\Medicine_Management_system\app\templates\dispense_medicine.html:63
+msgid "Dispense Selected Medicines"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:68
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:43
+#: C:\medicine_project\Medicine_Management_system\app\templates\dispense_medicine.html:67
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:43
+msgid "Dispensing Medicines"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:77
+#: C:\medicine_project\Medicine_Management_system\app\templates\dispense_medicine.html:76
+msgid "The medicines are now ready for the patient."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\templates\dispense_medicine.html⁩:79
+#: C:\medicine_project\Medicine_Management_system\app\templates\dispense_medicine.html:78
+msgid "The selected medicines are being dispensed into the cup. Please wait..."
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:14
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:14
+msgid "Scan Barcode"
+msgstr "Enter Barcode"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:16
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:16
+msgid "Place in Storage"
+msgstr "Place in Storage"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:17
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:17
+msgid "Re-scan for Authorization"
+msgstr "Authorization"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:18
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:18
+msgid "Confirmation"
+msgstr "Confirmation"
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:25
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:28
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:50
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:25
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:28
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:50
+msgid "Processing barcode"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:26
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:26
+msgid "Opening storage"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:42
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:42
+msgid "Select Medicines"
+msgstr ""
+
+#: ⁨C:\Users\User\Documents\medicine project\medicine_project\app\constants.py⁩:51
+#: C:\medicine_project\Medicine_Management_system\app\constants.py:51
+msgid "Dispensing medicines. Please wait..."
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\handlers\custom_http_exceptions.py:15
+msgid "Unauthorized"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\handlers\custom_http_exceptions.py:16
+msgid "You must log in to access this page."
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\handlers\custom_http_exceptions.py:18
+#: C:\medicine_project\Medicine_Management_system\app\templates\login.html:5
+#: C:\medicine_project\Medicine_Management_system\app\templates\login.html:13
+#: C:\medicine_project\Medicine_Management_system\app\templates\login.html:26
+msgid "Login"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\handlers\custom_http_exceptions.py:28
+msgid "Access Denied"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\handlers\custom_http_exceptions.py:29
+msgid "You do not have the necessary privileges to view this page."
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\handlers\custom_http_exceptions.py:31
+msgid "Go Home"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\routers\dispense_medicine.py:62
+msgid "No active prescriptions found for this patient."
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\routers\dispense_medicine.py:108
+msgid "No medicines selected for dispensing."
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\routers\dispense_medicine.py:119
+msgid "Invalid or out-of-stock medicine selected."
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\routers\input_medicine.py:133
+msgid "Barcode not found."
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\routers\input_medicine.py:150
+msgid "Medicine details not found."
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\routers\input_medicine.py:154
+msgid "Medicine type not found."
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\routers\medicines.py:56
+msgid "Medicine type not found"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\routers\patients.py:61
+msgid "Patient not found"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\routers\patients.py:74
+#: C:\medicine_project\Medicine_Management_system\app\routers\users.py:82
+msgid "Identity number already exists"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\routers\users.py:62
+msgid "User not found"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\routers\users.py:80
+msgid "Email already exists"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\base.html:6
+#: C:\medicine_project\Medicine_Management_system\app\templates\base.html:71
+msgid "Medicine Management System"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\base.html:19
+msgid "Loading..."
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\base.html:27
+msgid "MEDICINE MANAGEMENT"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\base.html:48
+msgid "English"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\base.html:49
+msgid "Hebrew"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\base.html:73
+msgid "Contact us: info@medmanagement.com"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\base.html:75
+msgid "Phone: +1 (555) 123-4567"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\login.html:16
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:65
+msgid "Username"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\login.html:20
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:85
+msgid "Password"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\management_dashboard.html:8
+msgid "Management Dashboard"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\management_dashboard.html:11
+msgid "Manage Medicines"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\management_dashboard.html:12
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:11
+msgid "Manage Users"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\management_dashboard.html:13
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:10
+msgid "Manage Patients"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\management_dashboard.html:14
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:11
+msgid "Manage Prescriptions"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:11
+msgid "Manage Medicine Types"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:21
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:56
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:88
+msgid "Add Medicine"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:34
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:64
+msgid "Barcode"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:35
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:68
+msgid "Description"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:36
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:72
+msgid "Size"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:37
+msgid "Position"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:60
+msgid "Name"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:80
+msgid "X Position"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:84
+msgid "Y Position"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_medicine_types.html:87
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:87
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:90
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:96
+msgid "Save"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:20
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:56
+msgid "Add Patient"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:34
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:68
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:77
+msgid "Identity Number"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:35
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:72
+msgid "Age"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:36
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:76
+msgid "Gender"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:37
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:84
+msgid "Contact Info"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:60
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:69
+msgid "First Name"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_patients.html:64
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:73
+msgid "Last Name"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:21
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:63
+msgid "Add Prescription"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:33
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:68
+msgid "Patient"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:34
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:76
+msgid "Prescribed By"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:49
+msgid "Edit"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:50
+msgid "Delete"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_prescriptions.html:84
+msgid "Medicines"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:21
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:61
+msgid "Add User"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:36
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:81
+msgid "Email"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:37
+msgid "ID"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:38
+#: C:\medicine_project\Medicine_Management_system\app\templates\manage_users.html:89
+msgid "Role"
+msgstr ""
+
+#: C:\medicine_project\Medicine_Management_system\app\main.py:119
+msgid "Invalid username or password"
+msgstr ""

@@ -52,7 +52,7 @@
                     {% for medicine in active_medicines %}
                         <li class="medicine-item">
                             <input type="checkbox" name="selected_medicines" value="{{ medicine.id }}">
-                            <label>{{ medicine.name }} - {{ medicine.dosage }}</label>
+                            <label>{{ medicine.name }} - {{ medicine.quantity }}</label>
                         </li>
                     {% endfor %}
                 </ul>

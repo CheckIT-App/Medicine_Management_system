@@ -1,0 +1,102 @@
+.item-detail ul{
+    padding: 0 15px;
+}
+/* Container for each dynamically added medicine item */
+.medicine-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for form groups (label + input/select) */
+.medicine-container .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-right: 1rem;
+    flex: 1; /* Allow equal spacing */
+}
+
+/* Labels for the form fields */
+.medicine-container  label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+    color: #333;
+    flex:none;
+}
+
+/* Input and Select fields */
+.medicine-container .form-group input,
+.medicine-container .form-group select {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+/* Focus state for inputs and selects */
+.medicine-container .form-group input:focus,
+.medicine-container .form-group select:focus {
+    border-color: #007bff;
+}
+
+/* Button styling for "Add Another Medicine" */
+#add-medicine-button {
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 0 auto 0;
+    text-align: center;
+}
+
+#add-medicine-button:hover {
+    background-color: #0056b3;
+}
+#medicines-section {
+    position: relative;
+    padding: 1rem 0 0;
+    border-top: 1px solid #ddd;
+    
+}
+.medicine-container{
+    flex-direction: column;
+    gap:0;
+}
+.medicine-label{
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .medicine-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .medicine-item .form-group {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+
+    }
+
+    #add-medicine-button {
+        width: 100%;
+    }
+}
