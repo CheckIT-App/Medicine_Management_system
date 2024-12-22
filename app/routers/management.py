@@ -36,7 +36,8 @@ async def management_dashboard(request: Request, lang: str):
     Render the management dashboard where admins can choose to manage medicines, users, patients, and prescriptions.
     """
     _ = request.state._
-    return templates.TemplateResponse("management_dashboard.html", {"request": request, "_": _, "lang": lang})
+    user = request.state.user
+    return templates.TemplateResponse("management_dashboard.html", {"request": request, "_": _, "lang": lang,"user":user})
 
 
 # # MedicineType Management

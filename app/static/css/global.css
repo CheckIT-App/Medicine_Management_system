@@ -421,4 +421,7 @@
     font-weight: bold;
     cursor: pointer;
 }
+.error-modal{
+    display: block !important;
+} 
 

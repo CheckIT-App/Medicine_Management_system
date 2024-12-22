@@ -1,0 +1,29 @@
+INSERT INTO gender_codes (id, name) VALUES 
+(1, 'Male'),
+(2, 'Female');
+INSERT INTO medicine_size_codes (id, name) VALUES 
+(1, 'Small'),
+(2, 'Medium'),
+(3, 'Large');
+INSERT INTO role_codes (id, name) VALUES 
+(1, 'Admin'),
+(2, 'Pharmacist'),
+(3, 'Technician'),
+(4, 'Nurse');
+INSERT INTO users (
+    username, 
+    first_name, 
+    last_name, 
+    identity_number, 
+    email, 
+    password, 
+    role_id
+) VALUES (
+    'admin',                        -- username
+    'Default',                      -- first_name
+    'User',                         -- last_name
+    '000000000',                    -- identity_number
+    'admin@example.com',            -- email
+    '$2b$12$kMBhZvLUKeZX/mRkuFq6d.CasN490vCSPR1QlHVte3RxMCEfXwzSu', -- password (hashed, use bcrypt)
+    1                               -- role_id
+);

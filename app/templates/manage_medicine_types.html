@@ -41,7 +41,7 @@
                         <div class="header-actions">
                             <button type="button" class="edit-button action-button" data-entity-type="medicines" data-entity-id="{{ medicine.id }}">{{ _("Edit") }}</button>
                             <button type="button" class="delete-button action-button danger" data-entity-type="medicines" data-entity-id="{{ medicine.id }}">{{ _("Delete") }}</button>
-                            </div>
+                        </div>
                     </div>
                 </li>
             {% endfor %}
@@ -50,40 +50,43 @@
 </div>
 
 <!-- Medicine Modal -->
-<div id="entity-modal" class="modal hidden">
+<div id="entity-modal" class="modal hidden {% if errors %}open{% endif %}">
     <div class="modal-content">
         <span id="close-entity-modal" class="close-modal">&times;</span>
         <h2 id="modal-title" add-text="{{ _('Add medicine') }}" edit-text="{{ _('Edit medicine') }}">{{ _("Add medicine") }}</h2>
         <form id="entity-form" action="{{ url_for('save_medicine_type', lang=lang) }}" method="post">
-            <input type="hidden" name="medicine_id" id="entity_id">
+            <input type="hidden" name="medicine_id" id="entity_id" value="{{ form_data.medicine_id | default('') }}">
             <div class="form-group">
                 <label for="name">{{ _("Name") }}</label>
-                <input type="text" name="name" id="name" required>
+                <input type="text" name="name" id="name" value="{{ form_data.name | default('') }}" required>
             </div>
             <div class="form-group">
                 <label for="barcode">{{ _("Barcode") }}</label>
-                <input type="text" name="barcode" id="barcode" required>
+                <input type="text" name="barcode" id="barcode" value="{{ form_data.barcode | default('') }}" required>
             </div>
             <div class="form-group">
                 <label for="description">{{ _("Description") }}</label>
-                <textarea name="description" id="description"></textarea>
+                <textarea name="description" id="description">{{ form_data.description | default('') }}</textarea>
             </div>
             <div class="form-group">
                 <label for="size_id">{{ _("Size") }}</label>
                 <select name="size_id" id="size_id" required>
                     {% for size in sizes %}
-                        <option value="{{ size.id }}">{{ _(size.name) }}</option>
+                        <option value="{{ size.id }}" {% if form_data.size_id | default(0) == size.id %}selected{% endif %}>{{ _(size.name) }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="form-group">
                 <label for="x">{{ _("X Position") }}</label>
-                <input type="number" name="x" id="x" required>
+                <input type="number" name="x" id="x" value="{{ form_data.x | default('') }}" required>
             </div>
             <div class="form-group">
                 <label for="y">{{ _("Y Position") }}</label>
-                <input type="number" name="y" id="y" required>
+                <input type="number" name="y" id="y" value="{{ form_data.y | default('') }}" required>
             </div>
+            {% for error in errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
             <button type="submit" class="submit-button">{{ _("Save") }}</button>
         </form>
     </div>

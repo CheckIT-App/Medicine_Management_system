@@ -57,7 +57,7 @@
 </div>
 
 <!-- Prescription Modal -->
-<div id="entity-modal" class="modal hidden">
+<div id="entity-modal" class="modal hidden {% if errors %}open{% endif %}">
     <div class="modal-content">
         <span id="close-entity-modal" class="close-modal">&times;</span>
         <h2 id="modal-title" add-text="{{ _('Add prescription') }}" edit-text="{{ _('Edit prescription') }}">{{ _("Add prescription") }}</h2>
@@ -87,6 +87,9 @@
                 </div>
                 <button type="button" id="add-medicine-button" class="secondary-button">{{ _("Add medicine") }}</button>
             </div>
+            {%for error in errors%}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
             <button type="submit" class="submit-button">{{ _("Save") }}</button>
         </form>
     </div>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title if title else _("Medicine Management System") }}</title>
     <link rel="stylesheet" href="{{ url_for('static', path='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/global.css') }}">
     {% block additional_styles %}{% endblock %}
 </head>
 <body>
@@ -23,35 +24,105 @@
         <!-- Header -->
         <header class="header">
             <div class="title-container">
-                <img src="{{ url_for('static', path='images/logo.webp') }}"  alt="System Logo" class="logo">
-                <h1 class="title">{{ _("MEDICINE MANAGEMENT") }}</h1>
+                <img src="{{ url_for('static', path='images/logo.webp') }}" alt="System Logo" class="logo">
+                <h1 class="title">MEDICINE MANAGEMENT</h1>
             </div>
             <div class="control-buttons">
-                <a href="{{ home_url }}" aria-label="{{ _('Home') }}">
+                <a class="icon-container" href="{{ home_url }}" aria-label="{{ _('Home') }}">
                     <button class="icon-button">
                         <img src="{{ url_for('static', path='images/home.png') }}" alt="{{ _('Home') }}">
                     </button>
+                    <label class="icon-label">{{ _("Home") }}</label>
                 </a>
-                <button class="icon-button" aria-label="{{ _('Help') }}">
-                    <img src="{{ url_for('static', path='images/help_icon.png') }}" alt="{{ _('Help') }}">
-                </button>
-                <button class="icon-button" aria-label="{{ _('Settings') }}">
-                    <img src="{{ url_for('static', path='images/settings_icon.png') }}" alt="{{ _('Settings') }}">
-                </button>
-                
-                <!-- Language Dropdown -->
-                <div class="dropdown">
+                <div id="help-button" class="icon-container">
+                    <button class="icon-button" aria-label="{{ _('Help') }}">
+                        <img src="{{ url_for('static', path='images/help_icon.png') }}" alt="{{ _('Help') }}">
+                    </button>
+                    <label class="icon-label">{{ _("About") }}</label>
+                    <div id="help-text" class="hidden">
+                        <p>{{ _("A Medicine Machine is an advanced system designed to streamline the dispensing, tracking, and management of medications in healthcare facilities.") }}</p>
+                        <p>{{ _("It automates various tasks, improving efficiency and reducing errors in medicine handling.") }}</p>
+                    </div>
+                </div>
+                <div class="dropdown icon-container">
                     <button class="icon-button dropdown-toggle" aria-label="{{ _('Language') }}">
                         <img src="{{ url_for('static', path='images/language_icon.png') }}" alt="{{ _('Language') }}">
                     </button>
+                    <label class="icon-label">{{ _("Language") }}</label>
                     <div class="dropdown-content">
-                        <a href="{{ url_for('management_dashboard', lang='en') }}" class="{% if lang == 'en' %}active{% endif %}">{{ _('English') }}</a>
-                        <a href="{{ url_for('management_dashboard', lang='he') }}" class="{% if lang == 'he' %}active{% endif %}">{{ _('Hebrew') }}</a>
+                        <a href="{{ url_for('management_dashboard', lang='en') }}" class="{% if lang == 'en' %}active{% endif %} dropdown-content-a">{{ _('English') }}</a>
+                        <a href="{{ url_for('management_dashboard', lang='he') }}" class="{% if lang == 'he' %}active{% endif %} dropdown-content-a">{{ _('Hebrew') }}</a>
+                    </div>
+                </div>
+                <span class="header-separator"></span>
+                <div class="user-profile">
+                    <div class="user-circle">
+                      {%if user%}  {{  user.username[0].upper() }} {%endif%}
+                    </div>
+                    <div id="user-popup" class="hidden">
+                        <a  id="open-details-modal" class="dropdown-content-a">{{ _("Edit Details") }}</a>
+                        <a  id="open-password-modal" class="dropdown-content-a">{{ _("Change Password") }}</a>
+                        <a href="{{ url_for('logout', lang=lang) }}" class="dropdown-content-a">{{ _("Sign Out") }}</a>
                     </div>
                 </div>
             </div>
         </header>
-
+        
+        
+        <!-- details modal -->
+        <div id="personal-details-modal" class="modal hidden">
+            <div class="modal-content">
+                <span id="close-details-modal" class="close-modal">&times;</span>
+                <h2 id="modal-title">{{ _("Edit Personal Details") }}</h2>
+                <form id="personal-details-form" action="{{ url_for('update_personal_details', lang=lang) }}" method="post">
+                    <input type="hidden" name="user_id" id="entity_id" value="{{ user.id }}">
+                    <div class="form-group">
+                        <label for="username">{{ _("Username") }}</label>
+                        <input type="text" name="username" id="username" value="{{ user.username }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="first_name">{{ _("First Name") }}</label>
+                        <input type="text" name="first_name" id="first_name" value="{{ user.first_name }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">{{ _("Last Name") }}</label>
+                        <input type="text" name="last_name" id="last_name" value="{{ user.last_name }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">{{ _("Email") }}</label>
+                        <input type="email" name="email" id="email" value="{{ user.email }}" required>
+                    </div>
+                    <div id="modal-details-errors"></div>
+                    <button type="submit" class="submit-button">{{ _("Save") }}</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- password modal -->
+        <div id="change-password-modal" class="modal hidden">
+            <div class="modal-content">
+                <span id="close-password-modal" class="close-modal">&times;</span>
+                <h2 id="modal-title">{{ _("Change Password") }}</h2>
+                <form id="change-password-form" action="{{ url_for('change_password', lang=lang) }}" method="post">
+                    <div id="modal-errors" class="error-container"></div>
+                    <div class="form-group">
+                        <label for="current_password">{{ _('Current Password') }}</label>
+                        <input type="password" name="current_password" id="current_password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="new_password">{{ _('New Password') }}</label>
+                        <input type="password" name="new_password" id="new_password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm_password">{{ _('Confirm New Password') }}</label>
+                        <input type="password" name="confirm_password" id="confirm_password" required>
+                    </div>
+                    <div id="modal-password-errors"></div>
+                    <button type="submit" class="submit-button">{{ _('Change Password') }}</button>
+                </form>
+            </div>
+        </div>
+        
         <!-- Customizable Header -->
         <div class="custom-header">
             {% block header %}{% endblock %}

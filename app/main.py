@@ -1,11 +1,18 @@
+import atexit
+import json
+import platform
 import sys
 import os
+import threading
+from typing import Optional
 
+from app.crud.user import update_user
 from app.handlers.custom_http_exceptions import create_http_exception_handler
 from app.utils.dependences import require_role_router
 from fastapi.security import OAuth2PasswordRequestForm
 
 from app.utils.auth_utils import get_current_user, verify_password
+from middlewares.current_user_middleware import CurrentUserMiddleware
 
 # Add the directory containing `app` to sys.path
 if getattr(sys, 'frozen', False):  # Check if running in PyInstaller bundle
@@ -13,7 +20,7 @@ if getattr(sys, 'frozen', False):  # Check if running in PyInstaller bundle
 else:
     sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from fastapi import FastAPI,Depends, HTTPException, Request
+from fastapi import FastAPI,Depends, Form, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, RedirectResponse
@@ -30,7 +37,7 @@ from shutil import which
 from app.utils.auth_utils import create_access_token, verify_password
 
 from app.middleware import LanguageMiddleware  # Import the middleware
-from app.routers import management, input_medicine, dispense_medicine, medicines, patients, prescriptions, users
+from app.routers import management, input_medicine, dispense_medicine, medicines, patients, prescriptions, users, manage_medicine_supply
 from app.server import start_server
 from sqlalchemy.orm import Session
 from app.database import engine, Base, get_db
@@ -39,6 +46,16 @@ from app.models import MedicineType, User
 # Create tables in the database
 Base.metadata.create_all(bind=engine)
 app = FastAPI()
+
+def load_config(config_path="config.json"):
+    """Load configuration from a JSON file."""
+    with open(config_path, "r") as file:
+        return json.load(file)
+
+config = load_config()
+
+SECRET_KEY = config["SECRET_KEY"]
+ACCESS_TOKEN_EXPIRE_MINUTES = config["ACCESS_TOKEN_EXPIRE_MINUTES"]
 # Get the absolute path to the templates directory
 if getattr(sys, 'frozen', False):  # Check if running in PyInstaller bundle
     BASE_DIR = sys._MEIPASS  # Temporary directory created by PyInstaller
@@ -49,7 +66,8 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 # templates_dir = os.path.join(os.path.dirname(__file__), "templates")
 # if not os.path.exists(templates_dir):
 #     raise RuntimeError(f"Templates directory '{templates_dir}' does not exist")
-
+if not os.path.exists(TEMPLATE_DIR):
+    raise FileNotFoundError(f"Template directory not found: {TEMPLATE_DIR}")
 templates = Jinja2Templates(directory=TEMPLATE_DIR)
 
 # Define the path to the 'static' directory, ensuring it's found no matter where the script is executed from
@@ -58,12 +76,15 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 # Check if the directory exists (this is optional but helps for debugging)
 # if not os.path.exists(STATIC_DIR):
 #     raise RuntimeError(f"Static directory '{STATIC_DIR}' does not exist")
+if not os.path.exists(STATIC_DIR):
+    raise FileNotFoundError(f"Static directory not found: {STATIC_DIR}")
 
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
-app.add_middleware(SessionMiddleware, secret_key="your-secret-key")
+app.add_middleware(SessionMiddleware, secret_key=SECRET_KEY)
 # Add the language middleware
 app.add_middleware(LanguageMiddleware)
+app.add_middleware(CurrentUserMiddleware)
 # Register the custom exception handler
 app.add_exception_handler(HTTPException, create_http_exception_handler(templates))
 # Password hashing
@@ -77,7 +98,9 @@ def get_translator(request: Request):
 async def redirect_to_default_language():
     return RedirectResponse(url="/he/login")
 @app.get("/{lang}", response_class=HTMLResponse)
-async def home(request: Request, lang: str = "he",user=Depends(require_role_router(["Pharmacist", "Admin","Technician"]))):
+async def home(request: Request, 
+               lang: str = "he",
+               user=Depends(require_role_router(["Pharmacist", "Admin","Technician"]))):
     _ = request.state._
     
     return templates.TemplateResponse("home.html", {
@@ -95,10 +118,21 @@ async def login(request: Request, lang: str = "he"):
         "_": _,  # Pass the `_` function to the template
         "lang": lang
     })
+@app.get("/{lang}/logout", response_class=HTMLResponse)
+async def logout(request: Request, lang: str = "he"):
+    _ = request.state._
+    response= RedirectResponse(url="/he/login")
+    
+    response.delete_cookie("access_token", httponly=True)
+    return response
+
 # Utility functions
 def get_user_by_username(db: Session, username: str):
-    return db.query(User).filter(User.username == username).first()
-
+    try:
+        return db.query(User).filter(User.username == username).first()
+    except Exception as e:
+        print(f"Error querying user: {e}")
+        return None
 
 
 @app.post("/{lang}/auth")
@@ -118,16 +152,109 @@ def auth(
             "lang": lang,
             "error": _("Invalid username or password")
         })
-    
+
+
     # Generate an access token (if token-based auth is used)
-    access_token = create_access_token(data={"sub": user.username})
+    access_token = create_access_token(data={"sub": user.username},expires_delta=ACCESS_TOKEN_EXPIRE_MINUTES)
 
     # Redirect to home or dashboard on success
     response = RedirectResponse(url=f"/{lang}", status_code=303)
     response.set_cookie(key="access_token", value=access_token, httponly=True)
     return response
 
+from fastapi.responses import JSONResponse
 
+@app.post("/{lang}/update_profile", response_class=HTMLResponse)
+async def update_personal_details(
+    request: Request,
+    lang: str = "he",
+    username: str = Form(...),
+    first_name: str = Form(...),
+    last_name: str = Form(...),
+    email: str = Form(...),
+    # password: Optional[str] = Form(None),
+    db: Session = Depends(get_db),
+):
+    """
+    Update personal details and handle validation errors dynamically for modals.
+    """
+    _ = request.state._  # Translation function
+    user = request.state.user  # Get current user from middleware
+
+    if not user:
+        return JSONResponse({"success": False, "errors": [_("Not authenticated")]}, status_code=401)
+
+    errors = []
+
+    # Check for duplicate email
+    if db.query(User).filter(User.email == email, User.id != user.id).first():
+        errors.append(_("Email already exists"))
+    if db.query(User).filter(User.username == username, User.id != user.id).first():
+        errors.append(_("Username already exists"))
+    print(errors)
+    if errors:
+        return JSONResponse({"success": False, "errors": errors}, status_code=400)
+
+    # Prepare updated data
+    updated_data = {
+        "username": username,
+        "first_name": first_name,
+        "last_name": last_name,
+        "email": email,
+    }
+
+    # Only hash and update password if it is provided
+    # if password:
+    #     updated_data["password"] = hash_password(password)
+
+    # Update the user in the database
+    update_user(db, user.id, updated_data)
+
+    # Respond with success
+    return JSONResponse({"success": True, "message": _("Profile updated successfully")}, status_code=200)
+
+@app.post("/{lang}/change_password", response_class=JSONResponse)
+async def change_password(
+    request: Request,
+    lang: str = "he",
+    current_password: str = Form(...),
+    new_password: str = Form(...),
+    confirm_password: str = Form(...),
+    db: Session = Depends(get_db),
+):
+    """
+    Change the user's password after verifying the current password.
+    """
+    _ = request.state._  # Translation function
+    user = db.query(User).filter(User.id == request.state.user.id).first() 
+
+    if not user:
+        raise HTTPException(status_code=401, detail=_("Not authenticated"))
+
+    # Validate current password
+    if not pwd_context.verify(current_password, user.password):
+        return JSONResponse({"success": False, "errors": [_("Current password is incorrect")]}, status_code=400)
+
+    # Validate new password confirmation
+    if new_password != confirm_password:
+        return JSONResponse({"success": False, "errors": [_("New passwords do not match")]}, status_code=400)
+
+    # Validate password strength (optional, implement your own logic)
+    if len(new_password) < 8:
+        return JSONResponse({"success": False, "errors": [_("Password must be at least 8 characters long")]}, status_code=400)
+
+    # Hash the new password
+    hashed_password = pwd_context.hash(new_password)
+
+    # Update the user's password in the database
+    user.password = hashed_password
+    db.commit()
+    db.refresh(user)
+
+    # Optional: Log the user out or invalidate old tokens
+    # This depends on your authentication/token management strategy
+
+    return JSONResponse({"success": True, "message": _("Password changed successfully")}, status_code=200)
 # @app.get("/users/", response_model=list[schemas.UserBase])
 # def list_users(db: Session = Depends(get_db)):
 #     print("users")
@@ -165,45 +292,86 @@ patients.templates=templates
 app.include_router(patients.router, prefix="/{lang}/management/patients", tags=["Patients"], dependencies=[Depends(require_role_router(["Admin"]))])
 prescriptions.templates=templates
 app.include_router(prescriptions.router, prefix="/{lang}/management/prescriptions", tags=["Prescriptions"])
+manage_medicine_supply.templates=templates
+app.include_router(manage_medicine_supply.router, prefix="/{lang}/supply", tags=["Supply"])
 
+server_process = None
+chrome_process = None
+
+def cleanup():
+    """Clean up resources on exit."""
+    print("clean up")
+    global server_process, chrome_process
+    if server_process and server_process.is_alive():
+        server_process.terminate()
+        print("Server process terminated.")
+    if chrome_process:
+        chrome_process.terminate()
+        print("Chrome process terminated.")
+
+# Register cleanup
+# atexit.register(cleanup)
+
+# def monitor_chrome(chrome_proc):
+#     """Monitor Chrome process and trigger cleanup on termination."""
+#     while chrome_proc.poll() is None:  # While Chrome is running
+#         time.sleep(1)  # Check every second
+#     print("Chrome closed. Running cleanup...")
+#     cleanup()
 
 if __name__ == "__main__":
     from multiprocessing import freeze_support
     freeze_support()
 
-    from multiprocessing import Process
+    # from multiprocessing import Process
 
     def open_chrome():
+        """Open Chrome/Chromium or fallback to default browser (cross-platform)."""
         url = "http://127.0.0.1:8000"  # Your server URL
+        system_os = platform.system()  # Detect the operating system
 
-        # Try to find Chrome's executable path
-        chrome_path = which("chrome")  # Checks system PATH for Chrome
-        if not chrome_path:
-            # Check common installation paths if not in PATH
-            possible_paths = [
+        # Paths to check for Chrome/Chromium
+        chrome_paths = []
+
+        if system_os == "Windows":
+            # Windows-specific paths
+            chrome_paths = [
+                which("chrome"),
                 r"C:\Program Files\Google\Chrome\Application\chrome.exe",
                 r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
-                os.path.expandvars(r"%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe"),
+                os.path.expandvars(r"%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe")
             ]
-            print(possible_paths)
-            for path in possible_paths:
-                if os.path.exists(path):
-                    chrome_path = path
-                    print(chrome_path)
-                    break
+        elif system_os == "Linux":
+            # Linux-specific paths (Raspberry Pi/Ubuntu)
+            chrome_paths = [
+                which("chromium-browser"),  # Raspberry Pi
+                which("chromium"),
+                which("google-chrome"),  # Standard Chrome on Linux
+                "/usr/bin/chromium-browser",
+                "/usr/bin/chromium",
+                "/usr/bin/google-chrome"
+            ]
+        else:
+            print(f"Unsupported OS: {system_os}")
+            return None
+
+        # Find the first valid Chrome/Chromium path
+        chrome_path = next((path for path in chrome_paths if path and os.path.exists(path)), None)
 
         if chrome_path:
-            # Open Chrome in kiosk mode if found
-            subprocess.Popen([
+            print(f"Found Chrome/Chromium at: {chrome_path}")
+            # Open in app mode or fullscreen mode
+            return subprocess.Popen([
                 chrome_path,
                 "--app=http://127.0.0.1:8000",  # Opens in app mode
                 "--start-fullscreen"           # Fullscreen mode
             ])
         else:
-            # Fall back to default browser if Chrome is not found
-            print("Chrome not found. Opening in default browser...")
+            # Fallback to the default browser if Chrome/Chromium is not found
+            print("Chrome/Chromium not found. Opening in default browser...")
             webbrowser.open(url)
-
+            return None
+        
     # Start the FastAPI server in a separate process
     server_process = Process(target=start_server)
     server_process.start()
@@ -213,12 +381,14 @@ if __name__ == "__main__":
 
     # Launch Chrome pointing to the FastAPI server
     chrome_process = open_chrome()
+    print(chrome_process)
+    
     input("Server started. Press Enter to terminate...")
-    try:
-        # Keep the server running
-        server_process.join()
-    except KeyboardInterrupt:
-        # Handle graceful shutdown
-        print("Shutting down...")
-        server_process.terminate()  # Stop the server process
-        chrome_process.terminate()  # Stop Chrome
+    # Keep the server running
+    server_process.join()
+    # if chrome_process:
+    #     chrome_monitor_thread = threading.Thread(target=monitor_chrome, args=(chrome_process,))
+    #     chrome_monitor_thread.daemon = True  # Ensure thread exits with the program
+    #     chrome_monitor_thread.start()
+    
+    

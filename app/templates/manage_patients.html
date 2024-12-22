@@ -50,40 +50,43 @@
 </div>
 
 <!-- Patient Modal -->
-<div id="entity-modal" class="modal hidden">
+<div id="entity-modal" class="modal hidden {% if errors %}open{% endif %}">
     <div class="modal-content">
         <span id="close-entity-modal" class="close-modal">&times;</span>
-        <h2 id="modal-title"add-text="{{ _('Add patient') }}" edit-text="{{ _('Edit patient') }}">{{ _("Add patient") }}</h2>
+        <h2 id="modal-title" add-text="{{ _('Add patient') }}" edit-text="{{ _('Edit patient') }}">{{ _("Add patient") }}</h2>
         <form id="entity-form" action="{{ url_for('save_patient', lang=lang) }}" method="post">
-            <input type="hidden" name="patient_id" id="entity_id">
+            <input type="hidden" name="patient_id" id="entity_id" value="{{ form_data.patient_id | default('') }}">
             <div class="form-group">
                 <label for="first_name">{{ _("First Name") }}</label>
-                <input type="text" name="first_name" id="first_name" required>
+                <input type="text" name="first_name" id="first_name" value="{{ form_data.first_name | default('') }}" required>
             </div>
             <div class="form-group">
                 <label for="last_name">{{ _("Last Name") }}</label>
-                <input type="text" name="last_name" id="last_name" required>
+                <input type="text" name="last_name" id="last_name" value="{{ form_data.last_name | default('') }}" required>
             </div>
             <div class="form-group">
                 <label for="identity_number">{{ _("Identity Number") }}</label>
-                <input type="text" name="identity_number" id="identity_number" required>
+                <input type="text" name="identity_number" id="identity_number" value="{{ form_data.identity_number | default('') }}" required>
             </div>
             <div class="form-group">
                 <label for="age">{{ _("Age") }}</label>
-                <input type="number" name="age" id="age" required>
+                <input type="number" name="age" id="age" value="{{ form_data.age | default('') }}" required>
             </div>
             <div class="form-group">
                 <label for="gender_id">{{ _("Gender") }}</label>
                 <select name="gender_id" id="gender_id" required>
                     {% for gender in genders %}
-                    <option value="{{ gender.id }}">{{ _(gender.name) }}</option>
+                    <option value="{{ gender.id }}" {% if form_data.gender_id | default(0) == gender.id %}selected{% endif %}>{{ _(gender.name) }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="form-group">
                 <label for="contact_info">{{ _("Contact Info") }}</label>
-                <input type="text" name="contact_info" id="contact_info">
+                <input type="text" name="contact_info" id="contact_info" value="{{ form_data.contact_info | default('') }}">
             </div>
+            {% for error in errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
             <button type="submit" class="submit-button">{{ _("Save") }}</button>
         </form>
     </div>

@@ -1,4 +1,6 @@
-from typing import List
+from datetime import date
+from operator import or_
+from typing import Dict, List
 from sqlalchemy.orm import Session
 from app.models import MedicineType, MedicineInstance
 from app.schemas.medicine import MedicineTypeCreate, MedicineInstanceCreate, MedicineTypeResponse
@@ -68,3 +70,29 @@ def get_medicine_instance_by_id(db: Session, instance_id: int):
 
 def get_all_medicine_instances(db: Session):
     return db.query(MedicineInstance).all()
+
+def get_medicine_supply(db: Session, low_quantity_threshold: int, expiration_date_threshold: date, show_critical_only:bool ) -> List[Dict]:
+    """
+    Retrieve supply data for each medicine type, highlighting critical instances.
+    """
+    medicine_types = db.query(MedicineType).all()
+    supply_report = []
+
+    for medicine_type in medicine_types:
+        query = db.query(MedicineInstance).filter(
+        MedicineInstance.medicine_type_id == medicine_type.id)
+        if show_critical_only:
+            query =query.filter(or_(
+            MedicineInstance.quantity < low_quantity_threshold,
+            MedicineInstance.expiration_date < expiration_date_threshold
+            )
+        )
+        critical_instances = query.all()    
+    
+
+        supply_report.append({
+            "medicine_type": medicine_type,
+            "critical_instances": critical_instances
+        })
+
+    return supply_report

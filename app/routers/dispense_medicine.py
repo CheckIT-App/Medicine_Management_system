@@ -17,6 +17,7 @@ hardware_interface = HardwareInterface()
 @router.get("/", name="dispense_medicine", response_class=HTMLResponse)
 async def dispense_medicine_home(request: Request, lang: str):
     _ = request.state._
+    user = request.state.user
     stage = DispenseSteps.SCAN_PATIENT_BARCODE
     return templates.TemplateResponse("dispense_medicine.html", {
         "request": request,
@@ -24,6 +25,7 @@ async def dispense_medicine_home(request: Request, lang: str):
         "Steps": DispenseSteps,
         "_": _,
         "lang": lang,
+        "user":user,
         "current_step": stage
     })
 
@@ -31,6 +33,7 @@ async def dispense_medicine_home(request: Request, lang: str):
 @router.post("/scan_patient", response_class=HTMLResponse)
 async def scan_patient(request: Request, lang: str, db: Session = Depends(get_db), barcode: str = Form(...)):
     _ = request.state._
+    user = request.state.user
 
     # Fetch the patient by barcode
     patient = db.query(Patient).filter(Patient.contact_info == barcode).first()
@@ -41,6 +44,7 @@ async def scan_patient(request: Request, lang: str, db: Session = Depends(get_db
             "_": _,
             "Steps": DispenseSteps,
             "lang": lang,
+            "user":user,
             "current_step": DispenseSteps.SCAN_PATIENT_BARCODE,
             "error": _("Invalid patient barcode. Please try again.")
         })
@@ -58,6 +62,7 @@ async def scan_patient(request: Request, lang: str, db: Session = Depends(get_db
             "_": _,
             "Steps": DispenseSteps,
             "lang": lang,
+            "user":user,
             "current_step": DispenseSteps.SCAN_PATIENT_BARCODE,
             "error": _("No active prescriptions found for this patient.")
         })
@@ -88,6 +93,7 @@ async def scan_patient(request: Request, lang: str, db: Session = Depends(get_db
         "_": _,
         "Steps": DispenseSteps,
         "lang": lang,
+        "user":user,
         "current_step": stage,
         "active_medicines": active_medicines
     })
@@ -101,6 +107,7 @@ async def dispense_medicines(
     selected_medicines: list = Form(...)
 ):
     _ = request.state._
+    user = request.state.user
     stage = DispenseSteps.DISPENSING_AND_COMPLETE
     print("selected medicines", selected_medicines)
     # Validate selected medicines
@@ -132,6 +139,7 @@ async def dispense_medicines(
         "_": _,
         "Steps": DispenseSteps,
         "lang": lang,
+        "user":user,
         "current_step": stage,
         "dispensing_complete": True  # Flag to show "ready" message in template
     })

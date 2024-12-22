@@ -18,6 +18,7 @@ hardware_interface = HardwareInterface()  # Initialize hardware interface
 @router.get("/", name="input_medicine", response_class=HTMLResponse)
 async def input_medicine_home(request: Request, lang: str):
     _ = request.state._
+    user = request.state.user
     stage = Steps.SCAN_BARCODE
     current_step = stage
     return templates.TemplateResponse("input_medicine.html", {
@@ -26,6 +27,7 @@ async def input_medicine_home(request: Request, lang: str):
         "_": _,
         "Steps": Steps,
         "lang": lang,
+        "user":user,
         "current_step": current_step
     })
 
@@ -33,6 +35,7 @@ async def input_medicine_home(request: Request, lang: str):
 @router.post("/scan_barcode", response_class=HTMLResponse)
 async def scan_barcode(request: Request, lang: str, db: Session = Depends(get_db), barcode:str=Form(...)):
     _ = request.state._
+    user = request.state.user
     stage = Steps.ENTER_MEDICINE_DETAILS
     print(barcode)
     # Async hardware scanning
@@ -47,6 +50,7 @@ async def scan_barcode(request: Request, lang: str, db: Session = Depends(get_db
             "_": _,
             "Steps": Steps,
             "lang": lang,
+            "user":user,
             "current_step": Steps.SCAN_BARCODE,
             "error": _("Invalid barcode. Please try again.")
         })
@@ -57,6 +61,7 @@ async def scan_barcode(request: Request, lang: str, db: Session = Depends(get_db
         "_": _,
         "Steps": Steps,
         "lang": lang,
+        "user":user,
         "current_step": stage,
         "medicine_name": medicine_type.name,
         
@@ -74,6 +79,7 @@ async def medicine_details(
     
 ):
     _ = request.state._
+    user = request.state.user
     stage = Steps.PLACE_IN_STORAGE
     
     # Validate form inputs
@@ -84,6 +90,7 @@ async def medicine_details(
             "_": _,
             "Steps": Steps,
             "lang": lang,
+            "user":user,
             "current_step": Steps.ENTER_MEDICINE_DETAILS,
             "error": _("All fields are required.")
         })
@@ -100,6 +107,7 @@ async def medicine_details(
         "_": _,
         "Steps": Steps,
         "lang": lang,
+        "user":user,
         "current_step": stage
     })
 
@@ -107,6 +115,7 @@ async def medicine_details(
 @router.post("/finish_placing_medicine", response_class=HTMLResponse)
 async def finish_placing_medicine(request: Request, lang: str):
     _ = request.state._
+    user = request.state.user
     stage = Steps.RESCAN_FOR_AUTHORIZATION
     return templates.TemplateResponse("input_medicine.html", {
         "request": request,
@@ -114,6 +123,7 @@ async def finish_placing_medicine(request: Request, lang: str):
         "_": _,
         "Steps": Steps,
         "lang": lang,
+        "user":user,
         "current_step": stage
     })
 
@@ -126,6 +136,7 @@ async def authorize_barcode(
     barcode: str = Form(...)
 ):
     _ = request.state._
+    user = request.state.user
     stage = Steps.CONFIRMATION
     p_barcode = request.session.get("barcode")
     print(p_barcode)
@@ -139,6 +150,7 @@ async def authorize_barcode(
             "_": _,
             "Steps": Steps,
             "lang": lang,
+            "user":user,
             "current_step": Steps.RESCAN_FOR_AUTHORIZATION,
             "error": _("Authorization failed. Barcode does not match.")
         })
@@ -175,5 +187,6 @@ async def authorize_barcode(
         "_": _,
         "Steps": Steps,
         "lang": lang,
+        "user":user,
         "current_step": stage
     })

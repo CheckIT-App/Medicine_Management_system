@@ -3,11 +3,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const lang = htmlTag.lang || 'en';
 
     const modal = document.getElementById('entity-modal');
-    const form = document.getElementById('entity-form');
-    const modalTitle = document.getElementById('modal-title');
-    const entityIdInput = document.getElementById('entity_id');
-    const closeModal = document.getElementById('close-entity-modal');
-
+    const form = modal.querySelector('#entity-form');
+    const modalTitle = modal.querySelector('#modal-title');
+    const entityIdInput = modal.querySelector('#entity_id');
+    const closeModal = modal.querySelector('#close-entity-modal');
+    
+    //for errors
+    if (modal.classList.contains('open')) {
+        modal.classList.remove('hidden');
+    }
     // Close modal handler
     closeModal.addEventListener("click", () => {
         modal.classList.add("hidden");
@@ -22,7 +26,17 @@ document.addEventListener('DOMContentLoaded', () => {
     window.openModal =function(action, entityType, entityData = null) {
         modalTitle.textContent = action === 'add' ? modalTitle.getAttribute("add-text") : modalTitle.getAttribute("edit-text");
         form.reset();
+        // Explicitly clear all input values to avoid pre-filled fields
+        const inputs = modal.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            if (input.type !== 'hidden') {
+                input.value = ''; // Clear input fields
+            }
+    });
         entityIdInput.value = action === 'add' ? 0 : entityData.id; // Set ID for edit
+
+        const errors = modal.querySelectorAll('.error');
+        errors.forEach(error => error.remove());
 
         // Populate form fields for edit
         if (action === 'edit' && entityData) {
@@ -87,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Edit buttons
-        document.querySelectorAll(`.edit-button[data-entity-type="${entityType}"]`).forEach(button => {
+        modal.querySelectorAll(`.edit-button[data-entity-type="${entityType}"]`).forEach(button => {
             button.addEventListener('click', (event) => {
                 const entityId = event.target.dataset.entityId;
                 fetchEntityAndOpenModal(entityType, entityId);
@@ -95,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Delete buttons
-        document.querySelectorAll(`.delete-button[data-entity-type="${entityType}"]`).forEach(button => {
+        modal.querySelectorAll(`.delete-button[data-entity-type="${entityType}"]`).forEach(button => {
             button.addEventListener('click', () => {
                 const entityId = button.getAttribute('data-entity-id');
                 const entityName = button.closest('li').querySelector('.item-name').textContent;

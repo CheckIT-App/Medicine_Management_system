@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block additional_styles %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/global.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='css/manage_supply.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="main-content">
+    <h1 class="stage-title">{{ _("Medicine Supply Report") }}</h1>
+    <div class="content-layout">
+        <!-- Filter Section -->
+        <div class="filter-container">
+            <form id="filter-form" method="get" action="{{ url_for('manage_supply', lang=lang) }}">
+                <div class="form-group-side">
+                    <label for="low_quantity_threshold">{{ _("Minimum Quantity Threshold:") }}</label>
+                    <input type="number" name="low_quantity_threshold" id="low_quantity_threshold" value="{{ low_quantity_threshold }}" required>
+                </div>
+                <div class="form-group-side">
+                    <label for="expiration_date_threshold">{{ _("Expiration Date Before:") }}</label>
+                    <input type="date" name="expiration_date_threshold" id="expiration_date_threshold" value="{{ expiration_date_threshold }}" required>
+                </div>
+                <div class="form-group-side checkbox-group">
+                    <label for="show_critical_only">{{ _("Show Critical Only:") }}</label>
+                    <input type="checkbox" name="show_critical_only" id="show_critical_only" {% if show_critical_only %}checked{% endif %}>
+                </div>
+                <button type="submit" class="submit-button">{{ _("Generate Report") }}</button>
+            </form>
+        </div>
+        
+        <!-- Report Section -->
+        <div class="report-container">
+            <table class="report-table">
+                <thead>
+                    <tr>
+                        <th>{{ _("Medicine Name") }}</th>
+                        <th>{{ _("Batch Number") }}</th>
+                        <th>{{ _("Quantity") }}</th>
+                        <th>{{ _("Expiration Date") }}</th>
+                        <th>{{ _("Status") }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for medicine in report_data %}
+                        {% for instance in medicine.critical_instances %}
+                            <tr class="{% if instance.quantity < low_quantity_threshold or instance.expiration_date < expiration_date_threshold %}highlight{% endif %}">
+                                <td>{{ medicine.medicine_type.name }}</td>
+                                <td>{{ instance.batch_number }}</td>
+                                <td>{{ instance.quantity }}</td>
+                                <td>{{ instance.expiration_date }}</td>
+                                <td>
+                                    {% if instance.quantity < low_quantity_threshold %}
+                                        {{ _("Low Quantity") }}
+                                    {% elif instance.expiration_date < expiration_date_threshold %}
+                                        {{ _("Expiring Soon") }}
+                                    {% else %}
+                                        {{ _("Normal") }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -19,25 +19,25 @@ async def manage_patients(request: Request, lang: str, db: Session = Depends(get
     Render the patient management page.
     """
     _ = request.state._
+    user = request.state.user
     patients = get_all_patients(db)
     genders = get_all_gender_codes(db)
     return templates.TemplateResponse(
-        "manage_patients.html", {"request": request, "patients": patients, "genders": genders, "_": _, "lang": lang}
+        "manage_patients.html",
+        {
+            "request": request,
+            "patients": patients,
+            "genders": genders,
+            "form_data": {},  # Default form data
+            "errors": "",
+            "_": _,
+            "lang": lang,
+            "user":user
+        },
     )
 
 
-@router.get("/{patient_id}", response_model=PatientResponse)
-async def get_patient_details(patient_id: int, db: Session = Depends(get_db)):
-    """
-    Get details of a specific patient by their ID.
-    """
-    patient = get_patient_by_id(db, patient_id)
-    if not patient:
-        raise HTTPException(status_code=404, detail="Patient not found")
-    return patient
-
-
-@router.post("/save", response_class=RedirectResponse)
+@router.post("/save", response_class=HTMLResponse)
 async def save_patient(
     request: Request,
     lang: str,
@@ -51,15 +51,48 @@ async def save_patient(
     db: Session = Depends(get_db),
 ):
     """
-    Add a new patient or update an existing patient.
+    Add a new patient or update an existing patient, preserving form data on errors.
     """
     _ = request.state._
+    user = request.state.user
+    errors = []
+    form_data = {
+        "patient_id": patient_id,
+        "first_name": first_name,
+        "last_name": last_name,
+        "identity_number": identity_number,
+        "age": age,
+        "gender_id": gender_id,
+        "contact_info": contact_info,
+    }
 
-    if patient_id:  # If patient_id is provided, update the patient
+    if patient_id:  # Update an existing patient
         patient = get_patient_by_id(db, patient_id)
         if not patient:
-            raise HTTPException(status_code=404, detail=_("Patient not found"))
+            errors.append(_("Patient not found"))
 
+        # Check for duplicate identity number
+        if db.query(Patient).filter(Patient.identity_number == identity_number, Patient.id != patient_id).first():
+            errors.append(_("Identity number already exists"))
+
+        if errors:
+            patients = get_all_patients(db)
+            genders = get_all_gender_codes(db)
+            return templates.TemplateResponse(
+                "manage_patients.html",
+                {
+                    "request": request,
+                    "errors": errors,
+                    "form_data": form_data,
+                    "patients": patients,
+                    "genders": genders,
+                    "_": _,
+                    "lang": lang,
+                    "user":user
+                },
+            )
+
+        # Update the patient details
         updated_data = {
             "first_name": first_name,
             "last_name": last_name,
@@ -69,9 +102,28 @@ async def save_patient(
             "contact_info": contact_info,
         }
         update_patient(db, patient_id, updated_data)
-    else:  # Add a new patient
+    else:  # Create a new patient
+        # Check for duplicate identity number
         if db.query(Patient).filter(Patient.identity_number == identity_number).first():
-            raise HTTPException(status_code=400, detail=_("Identity number already exists"))
+            errors.append(_("Identity number already exists"))
+
+        if errors:
+            genders = get_all_gender_codes(db)
+            patients = get_all_patients(db)
+            return templates.TemplateResponse(
+                "manage_patients.html",
+                {
+                    "request": request,
+                    "errors": errors,
+                    "form_data": form_data,
+                    "patients": patients,
+                    "genders": genders,
+                    "_": _,
+                    "lang": lang,
+                    "user":user
+                },
+            )
+
         new_patient = PatientCreate(
             first_name=first_name,
             last_name=last_name,
@@ -83,6 +135,17 @@ async def save_patient(
         create_patient(db, new_patient)
 
     return RedirectResponse(url=f"/{lang}/management/patients", status_code=303)
+
+
+@router.get("/{patient_id}", response_model=PatientResponse)
+async def get_patient_details(patient_id: int, db: Session = Depends(get_db)):
+    """
+    Get details of a specific patient by their ID.
+    """
+    patient = get_patient_by_id(db, patient_id)
+    if not patient:
+        raise HTTPException(status_code=404, detail="Patient not found")
+    return patient
 
 
 @router.delete("/{patient_id}", status_code=204)

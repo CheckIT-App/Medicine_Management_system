@@ -7,6 +7,7 @@ from .medicine import (
     create_medicine_instance,
     get_medicine_instance_by_id,
     get_all_medicine_instances,
+    get_medicine_supply
 )
 from .patient import create_patient, get_patient_by_id, get_all_patients,update_patient,delete_patient
 from .user import create_user, get_user_by_email, get_all_users,get_user_by_id,update_user,delete_user

@@ -52,3 +52,61 @@ PW:manage1234
 exe:
 pyinstaller --onefile --console -i app/static/images/logo.ico app/main.py --add-data "app/templates;templates" --add-data "app/static;static" --hidden-import uvicorn --hidden-import fastapi --hidden-import starlette
 
+respberrypi:
+un:respi
+pw:respiaba
+host:raspberrypi
+ssh respi@raspberrypi.local
+scp -r . respi@raspberrypi.local:/home/respi/project
+scp -r . raspberrypi.local:/home/pi/project
+mkdir -p /home/pi/project
+mv /home/respi/project /home/respi/medicine_management_project
+ sudo reboot
+
+steps:
+r-pi:init:
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y python3 python3-pip python3-venv
+cmd:
+scp -r . respi@raspberrypi.local:/home/respi/medicine_management_project
+r-pi:
+cd /home/respi/medicine_management_project
+ 
+ venv:
+ python3 -m venv venv
+ source venv/bin/activate
+ pip install -r requirements.txt
+
+ db:
+ sudo apt update
+sudo apt install -y postgresql postgresql-contrib
+ ps aux | grep postgres
+sudo -i -u postgres
+createdb medicine_management
+psql
+ ALTER USER postgres WITH PASSWORD 'manage1234';
+ psql -U postgres -d medicine_management
+CREATE SEQUENCE actions_id_seq;
+CREATE SEQUENCE prescriptions_id_seq;
+
+DROP DATABASE IF EXISTS medicine_management;
+
+ \q
+ exit
+
+python -m app.main
+התקנה
+להוריד מהאתר את מערכת ההפעלה ולהתקין בעזרת אימיגר
+
+Stop the Native X Session- נעשה
+sudo nano /boot/firmware/config.txt
+#dtoverlay=vc4-kms-v3d--לתצוגה
+
+sudo nano /etc/xrdp/startwm.sh
+
+export LIBGL_ALWAYS_SOFTWARE=1
+export GALLIUM_DRIVER=llvmpipe
+
+startxfce4
+
+chrome r-pi pw:1234

@@ -1,0 +1,4 @@
+{
+    "SECRET_KEY": "de47gdHF2-ev4-F4thDFbg-30097fhnDGB",
+    "ACCESS_TOKEN_EXPIRE_MINUTES": 30
+}
