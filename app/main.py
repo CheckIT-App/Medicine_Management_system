@@ -37,7 +37,7 @@ from shutil import which
 from app.utils.auth_utils import create_access_token, verify_password
 
 from app.middleware import LanguageMiddleware  # Import the middleware
-from app.routers import management, input_medicine, dispense_medicine, medicines, patients, prescriptions, users, manage_medicine_supply
+from app.routers import authentication, management, input_medicine, dispense_medicine, medicines, patients, prescriptions, users, manage_medicine_supply
 from app.server import start_server
 from sqlalchemy.orm import Session
 from app.database import engine, Base, get_db
@@ -55,7 +55,6 @@ def load_config(config_path="config.json"):
 config = load_config()
 
 SECRET_KEY = config["SECRET_KEY"]
-ACCESS_TOKEN_EXPIRE_MINUTES = config["ACCESS_TOKEN_EXPIRE_MINUTES"]
 # Get the absolute path to the templates directory
 if getattr(sys, 'frozen', False):  # Check if running in PyInstaller bundle
     BASE_DIR = sys._MEIPASS  # Temporary directory created by PyInstaller
@@ -82,7 +81,6 @@ if not os.path.exists(STATIC_DIR):
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 app.add_middleware(SessionMiddleware, secret_key=SECRET_KEY)
-# Add the language middleware
 app.add_middleware(LanguageMiddleware)
 app.add_middleware(CurrentUserMiddleware)
 # Register the custom exception handler
@@ -109,22 +107,7 @@ async def home(request: Request,
         "lang": lang,
         "user":user
     })
-@app.get("/{lang}/login", response_class=HTMLResponse)
-async def login(request: Request, lang: str = "he"):
-    _ = request.state._
-    
-    return templates.TemplateResponse("login.html", {
-        "request": request,
-        "_": _,  # Pass the `_` function to the template
-        "lang": lang
-    })
-@app.get("/{lang}/logout", response_class=HTMLResponse)
-async def logout(request: Request, lang: str = "he"):
-    _ = request.state._
-    response= RedirectResponse(url="/he/login")
-    
-    response.delete_cookie("access_token", httponly=True)
-    return response
+
 
 # Utility functions
 def get_user_by_username(db: Session, username: str):
@@ -135,126 +118,126 @@ def get_user_by_username(db: Session, username: str):
         return None
 
 
-@app.post("/{lang}/auth")
-def auth(
-    lang: str,
-    request: Request,
-    form_data: OAuth2PasswordRequestForm = Depends(),
-    db: Session = Depends(get_db),
-):
-    user = get_user_by_username(db, form_data.username)
-    if not user or not verify_password(form_data.password, user.password):
-        # Render the login template with an error message
-        _ = request.state._
-        return templates.TemplateResponse("login.html", {
-            "request": request,
-            "_": _,  # Pass the `_` function to the template
-            "lang": lang,
-            "error": _("Invalid username or password")
-        })
+# @app.post("/{lang}/auth")
+# def authentication(
+#     lang: str,
+#     request: Request,
+#     form_data: OAuth2PasswordRequestForm = Depends(),
+#     db: Session = Depends(get_db),
+# ):
+#     user = get_user_by_username(db, form_data.username)
+#     if not user or not verify_password(form_data.password, user.password):
+#         # Render the login template with an error message
+#         _ = request.state._
+#         return templates.TemplateResponse("login.html", {
+#             "request": request,
+#             "_": _,  # Pass the `_` function to the template
+#             "lang": lang,
+#             "error": _("Invalid username or password")
+#         })
 
 
-    # Generate an access token (if token-based auth is used)
-    access_token = create_access_token(data={"sub": user.username},expires_delta=ACCESS_TOKEN_EXPIRE_MINUTES)
+#     # Generate an access token (if token-based auth is used)
+#     access_token = create_access_token(data={"sub": user.username},expires_delta=ACCESS_TOKEN_EXPIRE_MINUTES)
 
-    # Redirect to home or dashboard on success
-    response = RedirectResponse(url=f"/{lang}", status_code=303)
-    response.set_cookie(key="access_token", value=access_token, httponly=True)
-    return response
+#     # Redirect to home or dashboard on success
+#     response = RedirectResponse(url=f"/{lang}", status_code=303)
+#     response.set_cookie(key="access_token", value=access_token, httponly=True)
+#     return response
 
-from fastapi.responses import JSONResponse
+# from fastapi.responses import JSONResponse
 
-@app.post("/{lang}/update_profile", response_class=HTMLResponse)
-async def update_personal_details(
-    request: Request,
-    lang: str = "he",
-    username: str = Form(...),
-    first_name: str = Form(...),
-    last_name: str = Form(...),
-    email: str = Form(...),
-    # password: Optional[str] = Form(None),
-    db: Session = Depends(get_db),
-):
-    """
-    Update personal details and handle validation errors dynamically for modals.
-    """
-    _ = request.state._  # Translation function
-    user = request.state.user  # Get current user from middleware
+# @app.post("/{lang}/update_profile", response_class=HTMLResponse)
+# async def update_personal_details(
+#     request: Request,
+#     lang: str = "he",
+#     username: str = Form(...),
+#     first_name: str = Form(...),
+#     last_name: str = Form(...),
+#     email: str = Form(...),
+#     # password: Optional[str] = Form(None),
+#     db: Session = Depends(get_db),
+# ):
+#     """
+#     Update personal details and handle validation errors dynamically for modals.
+#     """
+#     _ = request.state._  # Translation function
+#     user = request.state.user  # Get current user from middleware
 
-    if not user:
-        return JSONResponse({"success": False, "errors": [_("Not authenticated")]}, status_code=401)
+#     if not user:
+#         return JSONResponse({"success": False, "errors": [_("Not authenticated")]}, status_code=401)
 
-    errors = []
+#     errors = []
 
-    # Check for duplicate email
-    if db.query(User).filter(User.email == email, User.id != user.id).first():
-        errors.append(_("Email already exists"))
-    if db.query(User).filter(User.username == username, User.id != user.id).first():
-        errors.append(_("Username already exists"))
-    print(errors)
-    if errors:
-        return JSONResponse({"success": False, "errors": errors}, status_code=400)
+#     # Check for duplicate email
+#     if db.query(User).filter(User.email == email, User.id != user.id).first():
+#         errors.append(_("Email already exists"))
+#     if db.query(User).filter(User.username == username, User.id != user.id).first():
+#         errors.append(_("Username already exists"))
+#     print(errors)
+#     if errors:
+#         return JSONResponse({"success": False, "errors": errors}, status_code=400)
 
-    # Prepare updated data
-    updated_data = {
-        "username": username,
-        "first_name": first_name,
-        "last_name": last_name,
-        "email": email,
-    }
+#     # Prepare updated data
+#     updated_data = {
+#         "username": username,
+#         "first_name": first_name,
+#         "last_name": last_name,
+#         "email": email,
+#     }
 
-    # Only hash and update password if it is provided
-    # if password:
-    #     updated_data["password"] = hash_password(password)
+#     # Only hash and update password if it is provided
+#     # if password:
+#     #     updated_data["password"] = hash_password(password)
 
-    # Update the user in the database
-    update_user(db, user.id, updated_data)
+#     # Update the user in the database
+#     update_user(db, user.id, updated_data)
 
-    # Respond with success
-    return JSONResponse({"success": True, "message": _("Profile updated successfully")}, status_code=200)
+#     # Respond with success
+#     return JSONResponse({"success": True, "message": _("Profile updated successfully")}, status_code=200)
 
-@app.post("/{lang}/change_password", response_class=JSONResponse)
-async def change_password(
-    request: Request,
-    lang: str = "he",
-    current_password: str = Form(...),
-    new_password: str = Form(...),
-    confirm_password: str = Form(...),
-    db: Session = Depends(get_db),
-):
-    """
-    Change the user's password after verifying the current password.
-    """
-    _ = request.state._  # Translation function
-    user = db.query(User).filter(User.id == request.state.user.id).first() 
+# @app.post("/{lang}/change_password", response_class=JSONResponse)
+# async def change_password(
+#     request: Request,
+#     lang: str = "he",
+#     current_password: str = Form(...),
+#     new_password: str = Form(...),
+#     confirm_password: str = Form(...),
+#     db: Session = Depends(get_db),
+# ):
+#     """
+#     Change the user's password after verifying the current password.
+#     """
+#     _ = request.state._  # Translation function
+#     user = db.query(User).filter(User.id == request.state.user.id).first() 
 
-    if not user:
-        raise HTTPException(status_code=401, detail=_("Not authenticated"))
+#     if not user:
+#         raise HTTPException(status_code=401, detail=_("Not authenticated"))
 
-    # Validate current password
-    if not pwd_context.verify(current_password, user.password):
-        return JSONResponse({"success": False, "errors": [_("Current password is incorrect")]}, status_code=400)
+#     # Validate current password
+#     if not pwd_context.verify(current_password, user.password):
+#         return JSONResponse({"success": False, "errors": [_("Current password is incorrect")]}, status_code=400)
 
-    # Validate new password confirmation
-    if new_password != confirm_password:
-        return JSONResponse({"success": False, "errors": [_("New passwords do not match")]}, status_code=400)
+#     # Validate new password confirmation
+#     if new_password != confirm_password:
+#         return JSONResponse({"success": False, "errors": [_("New passwords do not match")]}, status_code=400)
 
-    # Validate password strength (optional, implement your own logic)
-    if len(new_password) < 8:
-        return JSONResponse({"success": False, "errors": [_("Password must be at least 8 characters long")]}, status_code=400)
+#     # Validate password strength (optional, implement your own logic)
+#     if len(new_password) < 8:
+#         return JSONResponse({"success": False, "errors": [_("Password must be at least 8 characters long")]}, status_code=400)
 
-    # Hash the new password
-    hashed_password = pwd_context.hash(new_password)
+#     # Hash the new password
+#     hashed_password = pwd_context.hash(new_password)
 
-    # Update the user's password in the database
-    user.password = hashed_password
-    db.commit()
-    db.refresh(user)
+#     # Update the user's password in the database
+#     user.password = hashed_password
+#     db.commit()
+#     db.refresh(user)
 
     # Optional: Log the user out or invalidate old tokens
     # This depends on your authentication/token management strategy
 
-    return JSONResponse({"success": True, "message": _("Password changed successfully")}, status_code=200)
+    # return JSONResponse({"success": True, "message": _("Password changed successfully")}, status_code=200)
 # @app.get("/users/", response_model=list[schemas.UserBase])
 # def list_users(db: Session = Depends(get_db)):
 #     print("users")
@@ -277,6 +260,9 @@ async def change_password(
 #     print(m)
 #     return m
 # Include routers
+authentication.templates = templates  # Pass templates to the router
+authentication.config = config 
+app.include_router(authentication.router, tags=["Authentication"])
 management.templates=templates
 app.include_router(management.router , prefix="/{lang}/management", tags=["management"], dependencies=[Depends(require_role_router(["Admin"]))])
 # Include the input_medicine router
