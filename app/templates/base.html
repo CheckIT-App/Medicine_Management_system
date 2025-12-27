@@ -6,6 +6,7 @@
     <title>{{ title if title else _("Medicine Management System") }}</title>
     <link rel="stylesheet" href="{{ url_for('static', path='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', path='css/global.css') }}">
+    <link rel="manifest" href="{{ url_for('static', path='manifest.json') }}">
     {% block additional_styles %}{% endblock %}
 </head>
 <body>

@@ -69,6 +69,7 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install -y python3 python3-pip python3-venv
 cmd:
 scp -r . respi@raspberrypi.local:/home/respi/medicine_management_project
+scp -r . respi@raspberrypi.local:/home/respi/medicine_management_project/app
 r-pi:
 cd /home/respi/medicine_management_project
  
@@ -110,3 +111,7 @@ export GALLIUM_DRIVER=llvmpipe
 startxfce4
 
 chrome r-pi pw:1234
+
+משתמש בתוכנה
+admin1
+1234

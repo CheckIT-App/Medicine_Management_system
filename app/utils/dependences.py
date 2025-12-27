@@ -1,5 +1,7 @@
 
 from fastapi import Depends, HTTPException
+from app.config import get_config
+from app.hal.hardware_interface import HardwareInterface
 from app.utils.auth_utils import get_current_user
 
 
@@ -11,3 +13,6 @@ def require_role_router(allowed_roles: list):
             raise HTTPException(status_code=403, detail="Access denied: Insufficient role")
         return user
     return dependency
+
+def get_hardware(config=Depends(get_config)):
+    return HardwareInterface(config)

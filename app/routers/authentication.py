@@ -3,16 +3,17 @@ from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from passlib.context import CryptContext
+from app.config import get_config
 from app.database import get_db
 from app.models import User
-from app.utils.auth_utils import create_access_token, verify_password
-from app.crud.user import update_user
+from app.schemas.user import UserCreate
+from app.utils.auth_utils import create_access_token, hash_password, verify_password
+from app.crud.user import create_user, update_user
 
 router = APIRouter()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 templates = None
-# Set a default config variable (to be overridden in main.py)
-config = {}
+
 
 @router.get("/{lang}/login", response_class=HTMLResponse)
 async def login(request: Request, lang: str = "he"):
@@ -36,9 +37,22 @@ async def logout(request: Request, lang: str = "he"):
 def auth(
     lang: str,
     request: Request,
+    config=Depends(get_config),
     form_data: OAuth2PasswordRequestForm = Depends(),
     db: Session = Depends(get_db),
 ):
+    
+    # hashed_password = hash_password("1234") 
+    # new_user = UserCreate(
+    #     username="admin2",
+    #     first_name="aaa",
+    #     last_name="bbb",
+    #     identity_number="111111111",
+    #     email="a@aeccc.com",
+    #     password=hashed_password,
+    #     role_id=1,
+    # )
+    # create_user(db, new_user)
     ACCESS_TOKEN_EXPIRE_MINUTES = config["ACCESS_TOKEN_EXPIRE_MINUTES"]
     user = get_user_by_username(db, form_data.username)
     if not user or not verify_password(form_data.password, user.password):
@@ -126,6 +140,9 @@ async def update_personal_details(
 
 def get_user_by_username(db: Session, username: str):
     try:
+        users = db.query(User).all()
+        for user in users:
+            print(user.password, user.username)
         return db.query(User).filter(User.username == username).first()
     except Exception as e:
         print(f"Error querying user: {e}")

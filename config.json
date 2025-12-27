@@ -1,4 +1,16 @@
 {
     "SECRET_KEY": "de47gdHF2-ev4-F4thDFbg-30097fhnDGB",
-    "ACCESS_TOKEN_EXPIRE_MINUTES": 30
+    "ACCESS_TOKEN_EXPIRE_MINUTES": 30,
+    
+    "X_DIR_PIN": 19,
+    "X_PUL_PIN": 13,
+    "X_ENA_PIN": 26,
+    "Y_DIR_PIN": 17,
+    "Y_PUL_PIN": 24,
+    "Y_ENA_PIN": 23,
+    "STEP_DELAY_MAX": 0.05,
+    "STEP_DELAY_MIN": 0.005,
+    "STEPS_PER_MM": 100,
+    "ACCELERATION_STEPS": 50,
+    "TOGGLE_ENA_PIN" : "True"
 }

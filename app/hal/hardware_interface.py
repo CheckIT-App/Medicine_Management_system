@@ -2,9 +2,25 @@
 import time
 import asyncio
 
+from app.hal.motor_control import MotorControl
+
 class HardwareInterface:
-    def __init__(self):
+    def __init__(self, config):
         # Initialization for hardware components like the barcode scanner and storage lock
+        self.config = config
+        self.motor_control = None  # Placeholder for motor control
+        self.scanner_initialized = False
+        self.storage_lock_initialized = False
+        self.initialized = False
+
+        # Call initialization
+        self.initialize_all_hardware()
+
+    def initialize_all_hardware(self):
+        """
+        Initialize all hardware components.
+        """
+        self.motor_control = MotorControl(self.config)
         self.scanner_initialized = self.initialize_scanner()
         self.storage_lock_initialized = self.initialize_storage_lock()
         self.initialized = self.initialize_hardware()
@@ -46,23 +62,56 @@ class HardwareInterface:
         print("Storage is closed.")
         return True
 
-    # def get_patient_medicines(self, patient_barcode):
-    #     # Simulated database lookup for patient’s active medicines
-    #     patient_medicines = {
-    #         "111111111": [
-    #             {"id": "med1", "name": "Aspirin", "dosage": "100mg"},
-    #             {"id": "med2", "name": "Paracetamol", "dosage": "500mg"}
-    #         ]
-    #     }
-    #     return patient_medicines.get(patient_barcode, [])
+    async def put_medicine(self, target_x, target_y):
+        """Function to move medicine to a specific position."""
+        
+        try:
+            # Move to target position
+            await self.motor_control.move_to_position(target_x, target_y)
+            print(f"Medicine moved to position X: {target_x}, Y: {target_y}.")
+        finally:
+            # Cleanup resources
+            self.motor_control.cleanup()
+        # def get_patient_medicines(self, patient_barcode):
+        #     # Simulated database lookup for patient’s active medicines
+        #     patient_medicines = {
+        #         "111111111": [
+        #             {"id": "med1", "name": "Aspirin", "dosage": "100mg"},
+        #             {"id": "med2", "name": "Paracetamol", "dosage": "500mg"}
+        #         ]
+        #     }
+        #     return patient_medicines.get(patient_barcode, [])
 
     async def dispense_medicines(self, selected_medicines):
-        # Simulate dispensing time based on the number of medicines
-        dispensing_time = len(selected_medicines) * 1  # Example: 1 second per medicine
-        print("Dispensing medicines:", selected_medicines)
-        
-        # Simulate awaiting hardware response
-        await asyncio.sleep(dispensing_time)  # Wait for the simulated dispensing time
+        """
+        Dispense a list of medicines by calling optimized_dispense_medicines.
+        Each selected medicine is validated and prepared for optimized dispensing.
+        """
+        try:
+            if not selected_medicines:
+                print("No medicines selected for dispensing.")
+                return
 
-        print("Medicines dispensed.")
-        return True
+            # Prepare the medicine data for optimized dispensing
+            medicines = []
+            for med in selected_medicines:
+                if "x" not in med or "y" not in med or "amount" not in med:
+                    print(f"Skipping invalid medicine entry: {med}")
+                    continue
+
+                medicines.append({
+                    "x": med["x"],
+                    "y": med["y"],
+                    "amount": med["amount"]
+                })
+
+            if not medicines:
+                print("No valid medicines to dispense.")
+                return
+
+            # Call optimized dispensing
+            await self.motor_control.optimized_dispense_medicines(medicines)
+
+        except Exception as e:
+            print(f"An error occurred during dispensing: {e}")
+

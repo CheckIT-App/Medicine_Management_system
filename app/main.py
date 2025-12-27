@@ -6,6 +6,7 @@ import os
 import threading
 from typing import Optional
 
+from app.config import SECRET_KEY, get_config
 from app.crud.user import update_user
 from app.handlers.custom_http_exceptions import create_http_exception_handler
 from app.utils.dependences import require_role_router
@@ -47,14 +48,10 @@ from app.models import MedicineType, User
 Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
-def load_config(config_path="config.json"):
-    """Load configuration from a JSON file."""
-    with open(config_path, "r") as file:
-        return json.load(file)
 
-config = load_config()
 
-SECRET_KEY = config["SECRET_KEY"]
+# Dependency function to provide the configuration
+
 # Get the absolute path to the templates directory
 if getattr(sys, 'frozen', False):  # Check if running in PyInstaller bundle
     BASE_DIR = sys._MEIPASS  # Temporary directory created by PyInstaller
@@ -261,7 +258,6 @@ def get_user_by_username(db: Session, username: str):
 #     return m
 # Include routers
 authentication.templates = templates  # Pass templates to the router
-authentication.config = config 
 app.include_router(authentication.router, tags=["Authentication"])
 management.templates=templates
 app.include_router(management.router , prefix="/{lang}/management", tags=["management"], dependencies=[Depends(require_role_router(["Admin"]))])
@@ -363,7 +359,7 @@ if __name__ == "__main__":
     server_process.start()
 
     # Wait for the server to initialize
-    time.sleep(5)
+    time.sleep(2)
 
     # Launch Chrome pointing to the FastAPI server
     chrome_process = open_chrome()
